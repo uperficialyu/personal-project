@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 
+// 最简单的todo应用
+import App from './components-todo/App'; 
 ReactDOM.render(<App />, document.getElementById('root'));

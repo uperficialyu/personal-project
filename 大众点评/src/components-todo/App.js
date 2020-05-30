@@ -13,21 +13,6 @@ class App extends Component {
     this.nextTodoId = 0;
   }
 
-  render() {
-    const todos = this.getVisibleTodos();
-    const { filter } = this.state;
-    return (
-      <div>
-        <AddTodo addTodo={this.addTodo} />
-        <TodoList todos={todos} toggleTodo={this.toggleTodo} />
-        <Footer
-          filter={filter}
-          setVisibilityFilter={this.setVisibilityFilter}
-        />
-      </div>
-    );
-  }
-
   getVisibleTodos = () => {
     const currentFilter = this.state.filter;
     return this.state.todos.filter(item => {
@@ -67,6 +52,21 @@ class App extends Component {
       filter
     });
   };
+
+  render() {
+    const todos = this.getVisibleTodos();
+    const { filter } = this.state;
+    return (
+      <div>
+        <AddTodo addTodo={this.addTodo} />
+        <TodoList todos={todos} toggleTodo={this.toggleTodo} />
+        <Footer
+          filter={filter}
+          setVisibilityFilter={this.setVisibilityFilter}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
