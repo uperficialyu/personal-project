@@ -19,7 +19,7 @@ import ReactDOM from 'react-dom';
 //   document.getElementById("root")
 // );
 
-// react-router简单使用
+// react-router使用
 import App from "./components-react-router/App";
 ReactDOM.render(<App />, document.getElementById("root"));
 
