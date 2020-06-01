@@ -1,4 +1,12 @@
-import {ADD_TODO, TOGGLE_TODO, SET_TODO_TEXT, SET_FILTER, FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, FETCH_TODOS_FAILURE} from './actionTypes'
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_TODO_TEXT,
+  SET_FILTER,
+  FETCH_TODOS_REQUEST,
+  FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_FAILURE
+} from './actionTypes'
 
 let nextTodoId = 0
 
@@ -26,11 +34,11 @@ export const fetchTodos = () => {
       response => {
         response.json().then(data => {
           dispatch(fetchTodosSuccess(data));
-        }) 
+        })
       },
       error => {
         dispatch(fetchTodosFailure(error));
-        console.log("An error occurred: "+ error)
+        console.log("An error occurred: " + error)
       }
     )
   }
