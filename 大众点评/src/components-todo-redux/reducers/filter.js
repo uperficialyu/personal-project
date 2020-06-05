@@ -9,4 +9,4 @@ const filter = (state = 'all', action) => {
   }
 }
 
-export default filter
+export default filter;

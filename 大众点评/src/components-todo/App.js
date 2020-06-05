@@ -24,8 +24,9 @@ class App extends Component {
         return true;
       }
     });
-  };
+  }
 
+  // 添加数据
   addTodo = text => {
     const todo = {
       id: this.nextTodoId++,
@@ -36,7 +37,7 @@ class App extends Component {
     this.setState({
       todos: newTodos
     });
-  };
+  }
 
   toggleTodo = id => {
     const newTodos = this.state.todos.map(item => {
@@ -45,13 +46,13 @@ class App extends Component {
     this.setState({
       todos: newTodos
     });
-  };
+  }
 
   setVisibilityFilter = filter => {
     this.setState({
       filter
     });
-  };
+  }
 
   render() {
     const todos = this.getVisibleTodos();

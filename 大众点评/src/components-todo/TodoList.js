@@ -8,8 +8,11 @@ class TodoList extends Component {
       <ul>
         {
           todos.map(todo => {
-            return <Todo key={todo.id} {...todo} 
-            onClick={() => {toggleTodo(todo.id)}}/>
+            return <Todo 
+              key={todo.id}
+              {...todo} 
+              onClick={() => {toggleTodo(todo.id)}}
+            />
           })
         }
       </ul>
