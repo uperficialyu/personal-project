@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直居中</title>
+
+<style>
+  .father {
+    /* position: relative;
+    overflow: hidden; */
+    width: 500px;
+    height: 500px;
+    background: red;
+    display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+    /* display: flex;
+		justify-content: center;
+		align-items: center; */
+  }
+
+  /* 方法1 定位 */
+  /* .box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: green;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+  } */
+
+  /* 使用定位，必须有宽高 */
+  /* .box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: green;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  } */
+
+  /* flex布局 */
+  .box {
+    width: 100px;
+    height: 100px;
+    background: green;
+  }
+
+
+  .box {
+    width: 100px;
+    height: 100px;
+    background: green;
+    display: inline-block;
+  }
+</style>
+
+</head>
+
+<body>
+
+<div class="father">
+  <div class="box" id="box"></div>
+</div>
+
+<!-- <script>
+  let HTML = document.getElementsByClassName('father')[0],
+    winW = HTML.clientWidth,
+    winH = HTML.clientHeight,
+    boxW = box.offsetWidth,
+    boxH = box.offsetHeight;
+  box.style.position = "absolute";
+  box.style.left = (winW - boxW) / 2 + 'px';
+  box.style.top = (winH - boxH) / 2 + 'px';
+</script> -->
+
+
+</body>
+
+</html>
