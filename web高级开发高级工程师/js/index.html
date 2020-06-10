@@ -21,7 +21,7 @@
     // 移除队列
     leave: function leave() {
       if (this.containter.length == 0) return;
-      this.containter.shift();
+      return this.containter.shift();
     },
     // 查看队列的长度
     size: function size() {
@@ -35,12 +35,33 @@
   }
 
   // 创建一个队列
-  var qe = new Queue();
-  qe.enter(1);
-  qe.enter(2);
-  qe.enter(3);
-  qe.leave();
-  console.log(qe.value());
+  // var qe = new Queue();
+  // qe.enter(1);
+  // qe.enter(2);
+  // qe.enter(3);
+  // qe.leave();
+  // console.log(qe.value());
+
+  // 算法题，击鼓传花
+  // n：参加游戏的人数 m：关键数
+  function game(n, m) {
+    let qe = new Queue();
+    // 先把人都依次放入到队列中
+    for (let i = 1; i <= n; i++) {
+      qe.enter(i);
+    }
+    // 开始处理
+    while(qe.size() > 1) {
+      for (let i = 0; i < m-1; i++) {
+        qe.enter(qe.leave());
+      }
+      qe.leave();
+    }
+    return qe.value()[0];
+  }
+  let res = game(6,4);
+  console.log(res)
+
 </script>
 </body>
 </html>
