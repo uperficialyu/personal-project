@@ -1,8 +1,8 @@
+// es5
 function Queue() {
   // 创建一个队列容器
   this.containter = [];
 }
-
 Queue.prototype = {
   construtor: Queue,
   // 进入队列 element进入队列的元素
@@ -24,6 +24,27 @@ Queue.prototype = {
     return JSON.parse(JSON.stringify(this.containter));
   }
 }
+
+// es6
+// class Queue {
+//   container = [];
+//   // 进入
+//   enter(element) {
+//       this.container.push(element);
+//   }
+//   // 离开
+//   leave() {
+//       return this.container.shift();
+//   }
+//   // 队列的长度
+//   size() {
+//       return this.container.length;
+//   }
+//   // 获取队列中的结果
+//   value() {
+//       return this.container.slice(0);
+//   }
+// }
 
 // 创建一个队列
 var qe = new Queue();
