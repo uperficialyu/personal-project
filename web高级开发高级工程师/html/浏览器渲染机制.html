@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 100px;
+      height: 100px;
+      background: red;
+      transition: left 1s linear 0s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="box"></div>
+  <script>
+    /* 点击盒子，让其立即回到0的位置，然后再运动到200的位置（动画1S） */
+
+    // 这样写不行，因为渲染队列机制导致：四行代码最后是一起渲染的，这样以最后的为主
+    // box.onclick = function () {
+    //   // 立即回到零
+    //   box.style.transitionDuration = '0s';
+    //   box.style.left = '0px';
+    //   // 运动到200的位置
+    //   box.style.transitionDuration = '1s';
+    //   box.style.left = '200px';
+    // };
+
+    // 由于渲染队列机制原因，中间加一句获取样式，就可以解决代码一起执行
+    // box.onclick = function () {
+    //   box.style.transitionDuration = '0s';
+    //   box.style.left = '0px';
+    //   // 获取样式，会立即刷新渲染队列
+    //   box.offsetLeft;
+    //   box.style.transitionDuration = '1s';
+    //   box.style.left = '200px';
+    // };
+
+    // 如果把2个操作放到宏任务中，也可以实现效果，但是两个宏任务的时间必须不一样，如果一样，那么还是会一起渲染的
+    // box.onclick = function () {
+    //   setTimeout(() => {
+    //     box.style.transitionDuration = '0s';
+    //     box.style.left = '0px';
+    //   }, 1)
+    //   setTimeout(() => {
+    //     box.style.transitionDuration = '1s';
+    //     box.style.left = '200px';
+    //   }, 2)
+    // };
+
+    // 会同时渲染
+    box.onclick = function () {
+      setTimeout(() => {
+        box.style.transitionDuration = '0s';
+        box.style.left = '0px';
+      })
+      setTimeout(() => {
+        box.style.transitionDuration = '1s';
+        box.style.left = '200px';
+      })
+    };
+  </script>
+</body>
+
+</html>

@@ -24,7 +24,7 @@ function leave(num) {
   return arr2;
 }
 
-console.log(leave(10000))
+console.log(leave(10000));
 
 
 
