@@ -7,6 +7,10 @@
 
 commonjs的语法只支持node环境，不支持浏览器环境。
 
+## esmodule
+打开index.html，运行，成功运行
+
+浏览器环境支持esmodule的方式
 
 ## webpack 打包工具  gulp  grunt
 
