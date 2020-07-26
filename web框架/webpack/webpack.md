@@ -27,8 +27,9 @@ commonjs的语法只支持node环境，不支持浏览器环境。
 
 webpack 是基于 node运行的；所有webpack的配置文件都是要写成 commonJS 规范的；
 
-使用第一步   安装webpack  npm i webpack webpack-cli  --save-dev
+使用第一步   安装webpack
 
+	npm i webpack webpack-cli  --save-dev
 	npm i  webpack webpack-cli  -D    
 	yarn add   webpack webpack-cli  -D   
 	
