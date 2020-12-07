@@ -1,20 +1,29 @@
 const koa = require('koa');
 
+const iniManger = require('./core/init');
+
 const app = new koa();
 
-function test() {
-  console.log('hello world');
-}
+iniManger.initCore(app);
+
+// const router = new Router();
+
+// router.get('/classic/latest', (ctx, next) =>{
+//   ctx.body = {
+//     key:'hello world'
+//   }
+// })
 
 // 注册
-app.use((ctx, next) =>{
-  // 上下文
-  console.log('hello world');
-  next();
-})
+// app.use(router.routes());
 
-app.use(() => {
-  console.log('dsdds')
-})
+// 注册
+// app.use(async(ctx, next) => {
+//   console.log(ctx.path)
+//   console.log(ctx.method)
+//   if(ctx.path === '/classic/latest' && ctx.method === 'GET') {
+//     ctx.body = 'hello world'
+//   }
+// })
 
 app.listen(3000);
