@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [],
-      filter: "all"
+      filter: "all",
+      count: 0
     };
     this.nextTodoId = 0;
   }
@@ -52,6 +53,21 @@ class App extends Component {
     this.setState({
       filter
     });
+  }
+
+  componentDidMount() {
+    this.setState({count: this.state.count + 1}) 
+    console.log(this.state.count)
+    this.setState({count: this.state.count + 1}) 
+    console.log(this.state.count)
+    setTimeout(()=>{
+      this.setState({count: this.state.count + 1}) 
+      console.log(this.state.count)
+    },0)
+    setTimeout(()=>{
+      this.setState({count: this.state.count + 1}) 
+      console.log(this.state.count)
+    },0)
   }
 
   render() {
