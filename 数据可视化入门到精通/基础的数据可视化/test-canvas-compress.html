@@ -67,16 +67,18 @@
         return;
       }
       const { type: fileType, size: fileSize } = file;
+      // 图片类型检查
       if (!ACCEPT.includes(fileType)) {
         alert(`不支持[${fileType}]文件类型！`);
         upload.value = '';
         return;
-      } // 图片类型检查
+      } 
+      // 图片容量检查
       if (fileSize > MAXSIZE) {
         alert(`文件超出${MAXSIZE_STR}！`);
         upload.value = '';
         return;
-      } // 图片容量检查
+      } 
       // 压缩图片
       convertImageToBase64(file, (base64Image) => compress(base64Image, uploadToServer));
     })
