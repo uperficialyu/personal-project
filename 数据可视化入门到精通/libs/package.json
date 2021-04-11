@@ -1,0 +1,17 @@
+{
+  "name": "libs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c rollup.config.dev.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rollup": "^2.45.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sam-test-data": "0.0.5"
+  }
+}
