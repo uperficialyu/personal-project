@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
 import Footer from "./Footer";
+import Modal from "./Modal"
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +66,7 @@ class App extends Component {
           filter={filter}
           setVisibilityFilter={this.setVisibilityFilter}
         />
+        <Modal />
       </div>
     );
   }
