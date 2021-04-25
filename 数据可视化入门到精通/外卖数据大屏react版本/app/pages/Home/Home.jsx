@@ -3,14 +3,15 @@
  * @Author: yushunping
  * @Date: 2020-08-21 18:47:17
  * @Last Modified by:   yushunping
- * @Last Modified time: 2021-04-24 21:53:10
+ * @Last Modified time: 2021-04-25 07:36:06
  */
 
 import React, { Component, Fragment } from 'react';
 import Ajax from 'lib/ajax';
 import { sessionSet, sessionGet } from 'storage';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Container from 'components/Container/Container';
+// import Container from 'components/Container/Container';
+import TopHeader from 'components/TopHeader/TopHeader';
 import { inject, observer } from 'mobx-react';
 import { Button } from 'antd';
 import './Home.scss';
@@ -29,14 +30,15 @@ class Home extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <Container>
+        <TopHeader />
+        {/* <Container>
           <Button type="primary">Primary Button</Button>
           <Button>Default Button</Button>
           <Button type="dashed">Dashed Button</Button>
           <br />
           <Button type="text">Text Button</Button>
           <Button type="link">Link Button</Button>
-        </Container>
+        </Container> */}
       </React.Fragment>
     );
   }
