@@ -1,65 +1,44 @@
-import React, { Component } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { debounce, observerDomResize } from './util';
+import './Container.scss';
 
-class Container extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ref: 'full-screen-container',
-      allWidth: 0,
-      allHeight: 0,
-      scale: 0,
-      datavRoot: '',
-      ready: false,
-      dom: '',
-      width: 0,
-      height: 0,
-      originalWidth: 0,
-      originalHeight: 0,
-      debounceInitWHFun: '',
-      domObserver: ''
-    }
-  }
+const Container = (props) => {
+  const {
+    children,
+    options
+  } = props;
 
-  componentDidMount = () => {
-    this.autoResizeMixinInit();
-    this.autoResizeMixinInit()
-  }
+  const [width, setwidth] = useState(0);
+  const [height, setheight] = useState(0);
+  const [originalWidth, setoriginalWidth] = useState(0);
+  const [originalHeight, setoriginalHeight] = useState(0);
+  const refComponent = useRef();
 
-  componentWillUnmount = () =>{
-    const { unbindDomResizeCallback } = this;
-    unbindDomResizeCallback()
-  }
+  const initWH = (resize = true) => {
+    return new Promise((resolve, reject) => {
+      if(options) {
+        const { width, height } = options;
+        if(width && height) {
+          setwidth(width);
+          setheight(height);
+        }
+      } else {
+        setwidth(refComponent.current.width);
+        setheight(refComponent.current.height);
+      }
+      if (!originalWidth || !originalHeight) {
+        const { width, height } = window.screen;
+        setoriginalWidth(width);
+        setoriginalHeight(height);
+      }
+      if (typeof setAppScale === 'function' && resize) {
+        setAppScale();
+      }
+      resolve();
+    })
+  };
 
-  afterAutoResizeMixinInit = () => {
-    this.initConfig();
-    this.setAppScale();
-    this.setState({
-      ready: true
-    });
-  }
-
-  async autoResizeMixinInit() {
-    await this.initWH(false)
-    this.getDebounceInitWHFun()
-    this.bindDomResizeCallback()
-    if (typeof this.afterAutoResizeMixinInit === 'function') this.afterAutoResizeMixinInit()
-  }
-
-  initConfig = () => {
-    const {
-      allWidth,
-      allHeight,
-      originalWidth,
-      originalHeight
-    } = this.state;
-
-    const {
-      width,
-      height
-    } = this.props;
-
-
+  const initConfig =() => {
     this.allWidth = this.width || this.originalWidth
     this.allHeight = this.height || this.originalHeight
     if (this.width && this.height) {
@@ -71,67 +50,53 @@ class Container extends Component {
     }
   }
 
-  setAppScale =() => {
-    const currentWidth = document.body.clientWidth
-    const currentHeight = document.body.clientHeight
-    this.dom.style.transform = `scale(${currentWidth / this.allWidth}, ${currentHeight / this.allHeight})`
+  // 设置缩放比
+  const setAppScale = () => {
+    const currentWidth = document.body.clientWidth;
+    const currentHeight = document.body.clientHeight;
+    // refComponent.current.style.transform = `scale(${currentWidth / this.allWidth}, ${currentHeight / this.allHeight})`
   }
 
-  onResize = () => {
-    this.setAppScale();
+  const getDebounceInitWHFun = () => {
+    // this.debounceInitWHFun = debounce(100, this.initWH)
   }
 
-  initWH(resize = true) {
-    const { $nextTick, $refs, ref, onResize } = this
-
-    return new Promise(resolve => {
-      $nextTick(e => {
-        const dom = this.dom = $refs[ref]
-        if (this.options) {
-          const { width, height } = this.options
-          if (width && height) {
-            this.width = width
-            this.height = height
-          }
-        } else {
-          this.width = dom.clientWidth
-          this.height = dom.clientHeight
-        }
-        if (!this.originalWidth || !this.originalHeight) {
-          const { width, height } = screen
-          this.originalWidth = width
-          this.originalHeight = height
-        }
-        if (typeof onResize === 'function' && resize) onResize()
-        resolve()
-      })
-    })
+  const bindDomResizeCallback = () => {
+    // this.domObserver = observerDomResize(this.dom, this.debounceInitWHFun)
+    // window.addEventListener('resize', this.debounceInitWHFun)
   }
 
-  getDebounceInitWHFun() {
-    this.debounceInitWHFun = debounce(100, this.initWH)
+  const unbindDomResizeCallback =() => {
+    // this.domObserver.disconnect()
+    // this.domObserver.takeRecords()
+    // this.domObserver = null
+    // window.removeEventListener('resize', this.debounceInitWHFun)
   }
 
-  bindDomResizeCallback() {
-    this.domObserver = observerDomResize(this.dom, this.debounceInitWHFun)
-    window.addEventListener('resize', this.debounceInitWHFun)
+  const autoResizeMixinInit = async () => {
+    await initWH(false)
+    // this.getDebounceInitWHFun()
+    // this.bindDomResizeCallback()
+    // if (typeof this.afterAutoResizeMixinInit === 'function') this.afterAutoResizeMixinInit()
   }
 
-  unbindDomResizeCallback() {
-    this.domObserver.disconnect()
-    this.domObserver.takeRecords()
-    this.domObserver = null
-    window.removeEventListener('resize', this.debounceInitWHFun)
-  }
+  useEffect(() => {
+    autoResizeMixinInit();
+    return () => {
+      unbindDomResizeCallback();
+    }
+  }, [])
 
-  render() {
-    const { children } = this.props;
-    return (
-      <div className="Container">
-        {children}
-      </div>
-    )
-  }
+
+
+
+  console.log(refComponent,'refComponent')
+
+  return (
+    <div ref={refComponent} id="Container" className="Container">
+      {children}
+    </div>
+  )
 }
 
 export default Container;
