@@ -6,73 +6,73 @@
         <top-header />
       </div>
       <div class="separator-wrapper">
-        <!-- <separator /> -->
+        <separator />
       </div>
       <div class="center">
         <div class="left">
           <div class="left1">
-            <!-- <total-user
+            <total-user
               :today-user="userData.userToday"
               :growth-last-day="+userData.userGrowthLastDay || 0"
               :growth-last-month="+userData.userGrowthLastMonth || 0"
               ref="totalUser"
-            /> -->
+            />
           </div>
           <div class="left2">
-            <!-- <average-age
+            <average-age
               :data="ageData"
               :avg-age="+userData.averageAge || 0"
               ref="averageAge"
-            /> -->
+            />
           </div>
           <div class="left3">
-            <!-- <total-device :data="deviceData" /> -->
+            <total-device :data="deviceData" />
           </div>
           <div class="left4">
-            <!-- <total-gender :data="userData.gender" /> -->
+            <total-gender :data="userData.gender" />
           </div>
           <div class="left5">
-            <!-- <line-chart :data="userData.rider" /> -->
+            <line-chart :data="userData.rider" />
           </div>
           <div class="left6">
-            <!-- <bar-chart :data="userData.category" /> -->
+            <bar-chart :data="userData.category" />
           </div>
         </div>
         <div class="right">
           <div class="right-top1">
-            <!-- <center-header :data="userData" /> -->
+            <center-header :data="userData" />
           </div>
           <div class="right-top2">
-            <!-- <country-category
+            <country-category
               :data="['ALL', '北京', '上海', '深圳', '杭州', '南京', '武汉']"
-            /> -->
+            />
           </div>
           <div class="right-bottom">
             <div class="right-left">
               <div class="right-left1">
-                <!-- <earth :data="mapData" /> -->
+                <earth :data="mapData" />
               </div>
               <div class="right-left2">
-                <!-- <country-category
+                <country-category
                   :data="['订单量', '销售额', '用户数', '退单量']"
                   :color="['rgb(178, 209, 126)', 'rgb(116, 166, 49)']"
-                /> -->
+                />
               </div>
               <div class="right-left3">
                 <dv-border-box-8 :color="['rgb(66, 68, 70)', 'rgb(251,253,142)']">
-                  <!-- <average-view :data="realTimeOrder" /> -->
+                  <average-view :data="realTimeOrder" />
                 </dv-border-box-8>
               </div>
               <div class="right-left4">
-                <!-- <schedule-view /> -->
+                <schedule-view />
               </div>
             </div>
             <div class="right-right">
               <div class="right-right1">
-                <!-- <plan-list :data="userData.areaSales" /> -->
+                <plan-list :data="userData.areaSales" />
               </div>
               <div class="right-right2">
-                <!-- <activate-user :data="userData.areaTop" /> -->
+                <activate-user :data="userData.areaTop" />
               </div>
             </div>
           </div>

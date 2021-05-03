@@ -3,7 +3,7 @@
  * @Author: yushunping
  * @Date: 2020-08-21 18:47:17
  * @Last Modified by:   yushunping
- * @Last Modified time: 2021-04-25 19:48:36
+ * @Last Modified time: 2021-05-02 11:09:07
  */
 
 import React, { Component, Fragment } from 'react';
@@ -12,6 +12,7 @@ import { sessionSet, sessionGet } from 'storage';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Container from 'components/Container/Container';
 import TopHeader from 'components/TopHeader/TopHeader';
+import TotalUser from 'components/TotalUser/TotalUser';
 import { inject, observer } from 'mobx-react';
 import { Button } from 'antd';
 import './Home.scss';
@@ -32,6 +33,7 @@ class Home extends Component {
       <React.Fragment>
         <Container options={{width: 3840, height: 2160}}>
           <TopHeader />
+          <TotalUser />
           <Button type="primary">Primary Button</Button>
           <Button>Default Button</Button>
           <Button type="dashed">Dashed Button</Button>
