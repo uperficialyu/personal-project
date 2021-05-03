@@ -15,9 +15,15 @@
         <!-- <ul>
             <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
         </ul> -->
-        <todo-list></todo-list>
-    </div>
+        <todo-list>
+            <todo-item @delete="handleDelete" v-for="item in list" :title="item.title" :del="item.del">
+                <template v-slot:pre-icon="{value}">
+                    <span>前置图标 {{value}}</span>
+                </template>
 
+            </todo-item>
+        </todo-list>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('todo-item', {
@@ -30,40 +36,53 @@
             },
             template: `
             <li>
+                <slot name="pre-icon" :value="value"></slot>
                 <span v-if="!del">{{title}}</span>
                 <span v-else style="text-decoration: line-through">{{title}}</span>
-                <button v-show="!del">删除</button>
+                <slot name="suf-icon">😄</slot>
+                <button v-show="!del" @click="handleClick">删除</button>
             </li>
-            `,
-            data: function () {
-                return {}
+          `,
+            data: function() {
+                return {
+                    value: Math.random()
+                }
             },
             methods: {
+                handleClick(e) {
+                    console.log('点击删除按钮')
+                    this.$emit('delete', this.title)
+                }
             },
         })
         Vue.component('todo-list', {
             template: `
             <ul>
-              <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
+              <slot></slot>
             </ul>
-            `,
-            data: function () {
+          `,
+            data: function() {
                 return {
-                    list: [{
-                        title: '课程1',
-                        del: false
-                    }, {
-                        title: '课程2',
-                        del: true
-                    }],
+
                 }
-            }
+            },
         })
         var vm = new Vue({
             el: '#app',
             data: {
                 message: 'hello world',
-
+                list: [{
+                    title: '课程1',
+                    del: false
+                }, {
+                    title: '课程2',
+                    del: true
+                }],
+            },
+            methods: {
+                handleDelete(val) {
+                    console.log('handleDelete', val)
+                }
             }
         })
     </script>

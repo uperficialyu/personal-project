@@ -148,7 +148,7 @@ CountTo.defaultProps = {
   decimals: true, // 要显示的小数位数
   decimal: 0, // 十进制分割
   separator: '.', // 分隔符
-  prefix: '', // 前缀
+  prefix: '', // 前缀 
   suffix: '', // 后缀
   useEasing: true, // 使用缓和功能
   easingFn: (t, b, c, d) => {
