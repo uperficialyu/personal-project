@@ -1,3 +1,29 @@
 {
-  "liveServer.settings.port": 5502
+  "liveServer.settings.port": 5502,
+  "workbench.iconTheme": "vscode-icons",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": false,
+  "editor.tabSize": 2,
+  "editor.renderControlCharacters": false,
+  "editor.fontSize": 18,
+  "window.zoomLevel": 0,
+  "workbench.colorCustomizations": {
+    "[Atom One Light]": {
+      "editor.background": "#C7EDCC",
+      "sideBar.background": "#C7EDCC",
+      "activityBar.background": "#C7EDCC",
+    },
+  },
+  "fileheader.save": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Monokai",
+  "git.autofetch": true,
+  "fileheader.author": "yushunping",
+  "vscode-live2d.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true,
+  },
+  // "workbench.editor.enablePreview": false
 }

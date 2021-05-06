@@ -3,7 +3,7 @@
  * @Author: yushunping
  * @Date: 2020-08-21 18:47:17
  * @Last Modified by:   yushunping
- * @Last Modified time: 2021-05-02 11:09:07
+ * @Last Modified time: 2021-05-04 11:42:30
  */
 
 import React, { Component, Fragment } from 'react';
@@ -13,6 +13,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import Container from 'components/Container/Container';
 import TopHeader from 'components/TopHeader/TopHeader';
 import TotalUser from 'components/TotalUser/TotalUser';
+import DiscountChart from 'components/DiscountChart/DiscountChart';
 import { inject, observer } from 'mobx-react';
 import { Button } from 'antd';
 import './Home.scss';
@@ -34,6 +35,7 @@ class Home extends Component {
         <Container options={{width: 3840, height: 2160}}>
           <TopHeader />
           <TotalUser />
+          <DiscountChart />
           <Button type="primary">Primary Button</Button>
           <Button>Default Button</Button>
           <Button type="dashed">Dashed Button</Button>
