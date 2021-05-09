@@ -8,7 +8,6 @@ export function randomExtend(minNum, maxNum) {
 
 export function debounce(delay, callback) {
   let lastTime
-
   return function () {
     clearTimeout(lastTime)
     const [that, args] = [this, arguments]

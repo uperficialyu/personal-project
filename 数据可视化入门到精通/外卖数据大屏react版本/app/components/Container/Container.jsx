@@ -5,92 +5,87 @@ import './Container.scss';
 const Container = (props) => {
   const {
     children,
-    options
+    options // 默认传进来的对象 例如 options = { width: 3840, height: 2160 }
   } = props;
 
-  const [width, setwidth] = useState(0);
-  const [height, setheight] = useState(0);
-  const [originalWidth, setoriginalWidth] = useState(0);
-  const [originalHeight, setoriginalHeight] = useState(0);
-  const refComponent = useRef();
+  const widthRef = useRef(0); // 定义宽度
+  const heightRef = useRef(0); // 定义高度
+  const originalWidthRef = useRef(0); // 视口宽度
+  const originalHeightRef = useRef(0); // 视口高度
+  const refComponent = useRef(); // 获取容器的dom
 
+  // 初始化宽高
   const initWH = (resize = true) => {
-    return new Promise((resolve, reject) => {
-      if(options) {
-        const { width, height } = options;
-        if(width && height) {
-          setwidth(width);
-          setheight(height);
-        }
+    const dom = refComponent.current;
+    const originalWidth = originalWidthRef.current;
+    const originalHeight = originalHeightRef.current;
+    // 获取大屏真实尺寸
+    if (options) {
+      const { width, height } = options;
+      if (width && height) {
+        widthRef.current = width;
+        heightRef.current = height;
       } else {
-        setwidth(refComponent.current.width);
-        setheight(refComponent.current.height);
+        widthRef.current = dom.clientWidth;
+        heightRef.current = dom.clientHeight;
       }
-      if (!originalWidth || !originalHeight) {
-        const { width, height } = window.screen;
-        setoriginalWidth(width);
-        setoriginalHeight(height);
-      }
-      if (typeof setAppScale === 'function' && resize) {
-        setAppScale();
-      }
-      resolve();
-    })
+    }
+    // 获取画布尺寸
+    if (!originalWidth || !originalHeight) {
+      const { width, height } = window.screen;
+      originalWidthRef.current = width;
+      originalHeightRef.current = height;
+    }
   };
 
-  const initConfig =() => {
-    this.allWidth = this.width || this.originalWidth
-    this.allHeight = this.height || this.originalHeight
-    if (this.width && this.height) {
-      this.dom.style.width = `${this.width}px`
-      this.dom.style.height = `${this.height}px`
+  // 更新尺寸
+  const updateSize = () => {
+    const dom = refComponent.current;
+    const width = widthRef.current;
+    const height = heightRef.current;
+    const originalWidth = originalWidthRef.current;
+    const originalHeight = originalHeightRef.current;
+    if (width && height) {
+      dom.style.width = `${width}px`;
+      dom.style.height = `${height}px`;
     } else {
-      this.dom.style.width = `${this.originalWidth}px`
-      this.dom.style.height = `${this.originalHeight}px`
+      dom.style.width = `${originalWidth}px`;
+      dom.style.height = `${originalHeight}px`;
     }
   }
 
   // 设置缩放比
   const setAppScale = () => {
+    const dom = refComponent.current;
+    const width = widthRef.current;
+    const height = heightRef.current;
+    const originalWidth = originalWidthRef.current;
+    const originalHeight = originalHeightRef.current;
+    // 获取真实的视口尺寸
     const currentWidth = document.body.clientWidth;
     const currentHeight = document.body.clientHeight;
-    // refComponent.current.style.transform = `scale(${currentWidth / this.allWidth}, ${currentHeight / this.allHeight})`
+    // 获取大屏最终的宽高
+    const realWidth = width || originalWidth;
+    const realHeight = height || originalHeight;
+    const widthScale = currentWidth / realWidth;
+    const heightScale = currentHeight / realHeight;
+    dom.style.transform = `scale(${widthScale}, ${heightScale})`;
   }
 
-  const getDebounceInitWHFun = () => {
-    // this.debounceInitWHFun = debounce(100, this.initWH)
-  }
-
-  const bindDomResizeCallback = () => {
-    // this.domObserver = observerDomResize(this.dom, this.debounceInitWHFun)
-    // window.addEventListener('resize', this.debounceInitWHFun)
-  }
-
-  const unbindDomResizeCallback =() => {
-    // this.domObserver.disconnect()
-    // this.domObserver.takeRecords()
-    // this.domObserver = null
-    // window.removeEventListener('resize', this.debounceInitWHFun)
-  }
-
-  const autoResizeMixinInit = async () => {
-    await initWH(false)
-    // this.getDebounceInitWHFun()
-    // this.bindDomResizeCallback()
-    // if (typeof this.afterAutoResizeMixinInit === 'function') this.afterAutoResizeMixinInit()
+  const onResize = () => {
+    initWH();
+    updateSize();
   }
 
   useEffect(() => {
-    autoResizeMixinInit();
+    initWH();
+    updateSize();
+    setAppScale();
+    window.addEventListener('resize', onResize);
     return () => {
-      unbindDomResizeCallback();
+      window.removeEventListener('resize', onResize);
     }
   }, [])
-
-
-
-
-  console.log(refComponent,'refComponent')
 
   return (
     <div ref={refComponent} id="Container" className="Container">
