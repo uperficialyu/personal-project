@@ -9,7 +9,7 @@ const TopHeader = (props) => {
     <div className="top-header">
       <img className="logo" src="https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/54149aa06f26afcf26f42d66c999ee8b.png"></img>
       <div className="logo-text">
-        <div className="cn-text">大数据平台</div>
+        <div className="cn-text">Emily外卖大数据平台</div>
         <div className="en-text">big data</div>
       </div>
       <div className="right-text">

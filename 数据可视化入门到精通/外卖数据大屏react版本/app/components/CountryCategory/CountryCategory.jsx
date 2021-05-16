@@ -1,7 +1,7 @@
 /*
  * @Author: yushunping
  * @Date: 2021-05-16 15:17:44 
- * @Last Modified by: mikey.zhaopeng
+ * @Last Modified by: yushunping
  * @Last Modified time: 2021-05-16 19:50:39
 */
 import React, { useState, useEffect } from 'react';
@@ -9,13 +9,11 @@ import './CountryCategory.scss';
 
 const CountryCategory = (props) => {
   const {
-    data
+    data,
+    colorList,
   } = props;
-  const colorList = [{background: 'rgb(140, 160, 173)'}, {background: 'rgb(80, 80, 80)'}];
   const [selected, setselected] = useState(0);
   const [hover, sethover] = useState(-1);
-
-  console.log(selected,'sdsd')
 
   useEffect(() => {
     setTimeout(() => {

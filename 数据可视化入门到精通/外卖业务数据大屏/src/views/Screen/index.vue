@@ -128,7 +128,6 @@
     setup () {
       const context = getCurrentInstance().ctx
       const { ready, userData, ageData, deviceData, realTimeOrder, mapData } = useScreenData(context, { once: false })
-
       return {
         ready,
         userData,
