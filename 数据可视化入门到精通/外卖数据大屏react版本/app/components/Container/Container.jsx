@@ -73,8 +73,10 @@ const Container = (props) => {
   }
 
   const onResize = () => {
+    console.log('1111')
     initWH();
     updateSize();
+    setAppScale();
   }
 
   useEffect(() => {

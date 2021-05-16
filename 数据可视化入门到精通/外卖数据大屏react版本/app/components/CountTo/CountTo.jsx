@@ -1,159 +1,123 @@
-import React, { useState, useEffect } from 'react';
-import { requestAnimationFrame, cancelAnimationFrame } from './requestAnimationFrame.js'
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './CountTo.scss';
 
-const CountTo = (props) => {
-  const {
-    startVal, // 开始值
-    endVal, // 结束值
-    duration, // 持续时间，以毫秒为单位
-    autoplay, // 自动播放
-    decimals, // 要显示的小数位数
-    decimal, // 十进制分割
-    separator, // 分隔符
-    prefix, // 前缀
-    suffix, // 后缀
-    useEasing, // 使用缓和功能
-    easingFn // 缓和回调
-  } = props;
+const propTypes = {
+  from: PropTypes.number,
+  to: PropTypes.number.isRequired,
+  speed: PropTypes.number.isRequired,
+  delay: PropTypes.number,
+  onComplete: PropTypes.func,
+  digits: PropTypes.number,
+  className: PropTypes.string,
+  tagName: PropTypes.string,
+  children: PropTypes.func,
+  easing: PropTypes.func,
+};
 
-  const isNumber = (val) => {
-    return !isNaN(parseFloat(val));
+const defaultProps = {
+  from: 0,
+  delay: 100,
+  digits: 0,
+  tagName: 'span',
+  easing: t => t,
+};
+
+class CountTo extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    const { from } = props;
+
+    this.state = {
+      counter: from,
+    };
+
+    this.start = this.start.bind(this);
+    this.clear = this.clear.bind(this);
+    this.next = this.next.bind(this);
+    this.updateCounter = this.updateCounter.bind(this);
   }
 
-  const formatNumber = (num) => {
-    num = num.toFixed(decimals);
-    num += '';
-    const x = num.split('.');
-    let x1 = x[0];
-    const x2 = x.length > 1 ? decimal + x[1] : '';
-    const rgx = /(\d+)(\d{3})/;
-    if (separator && !isNumber(separator)) {
-      while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + separator + '$2');
-      }
-    }
-    return prefix + x1 + x2 + suffix;
+  componentDidMount() {
+    this.start();
   }
 
-  const [localStartVal, setlocalStartVal] = useState(startVal);
-  const [displayValue, setdisplayValue] = useState(formatNumber(startVal));
-  const [printVal, setprintVal] = useState(null);
-  const [paused, setpaused] = useState(false);
-  const [localDuration, setlocalDuration] = useState(duration);
-  const [remaining, setremaining] = useState(null);
-  const [timestamp, settimestamp] = useState(null);
-  const [startTime, setstartTime] = useState(null);
-  const [rAF, setrAF] = useState(null);
+  componentWillReceiveProps(nextProps) {
+    const { from, to } = this.props;
 
-  const start = () => {
-    setlocalStartVal(startVal);
-    setstartTime(null);
-    setlocalDuration(duration);
-    setpaused(false);
-    setrAF(requestAnimationFrame(count));
-    console.log(requestAnimationFrame(count),'ssss')
-  }
-
-  const pauseResume = () => {
-    if (paused) {
-      resume();
-      setpaused(false);
-    } else {
-      pause();
-      setpaused(true);
+    if (nextProps.to !== to || nextProps.from !== from) {
+      this.start(nextProps);
     }
   }
 
-  const pause = () => {
-    cancelAnimationFrame(rAF);
+  componentWillUnmount() {
+    this.clear();
   }
 
-  const resume = () => {
-    setstartTime(null);
-    setlocalDuration(+remaining);
-    setlocalStartVal(printVal);
-    requestAnimationFrame(count);
+  start(props = this.props) {
+    this.clear();
+    const { from } = props;
+    this.setState({
+      counter: from,
+    }, () => {
+      const { speed, delay } = this.props;
+      const now = Date.now();
+      this.endDate = now + speed;
+      this.scheduleNextUpdate(now, delay);
+      this.raf = requestAnimationFrame(this.next);
+    });
   }
 
-  const reset = () => {
-    setstartTime(null);
-    cancelAnimationFrame(rAF);
-    setdisplayValue(formatNumber(startVal));
-  }
-
-  const count = () => {
-    let printVal;
-    if (!startTime) {
-      setstartTime(timestamp);
+  next() {
+    const now = Date.now();
+    const { speed, onComplete, delay } = this.props;
+    if (now >= this.nextUpdate) {
+      const progress = Math.max(0, Math.min(1, 1 - (this.endDate - now) / speed));
+      this.updateCounter(progress);
+      this.scheduleNextUpdate(now, delay);
     }
-    const progress = timestamp - startTime;
-    setremaining(localDuration - progress)
-    if (useEasing) {
-      if (startVal > endVal) {
-        printVal = localStartVal - easingFn(progress, 0, localStartVal - endVal, localDuration);
-        setprintVal(printVal);
-      } else {
-        printVal = easingFn(progress, localStartVal, endVal - localStartVal, localDuration);
-        setprintVal(printVal);
-      }
-    } else {
-      if (startVal > endVal) {
-        printVal = localStartVal - ((localStartVal - endVal) * (progress / tlocalDuration));
-        setprintVal(printVal);
-      } else {
-        printVal = localStartVal + (endVal - localStartVal) * (progress / localDuration);
-        setprintVal(printVal);
-      }
-    }
-    if (startVal > endVal) {
-      printVal = printVal < endVal ? endVal : printVal;
-      setprintVal(printVal);
-    } else {
-      printVal = printVal > endVal ? endVal : printVal;
-      setprintVal(printVal);
-    }
-    setdisplayValue(formatNumber(printVal));
-    if (progress < localDuration) {
-      setrAF(requestAnimationFrame(count));
-    } else {
-      this.$emit('callback');
+    if (now < this.endDate) {
+      this.raf = requestAnimationFrame(this.next);
+    } else if (onComplete) {
+      onComplete();
     }
   }
 
-  useEffect(() => {
-    if (autoplay) {
-      start();
-    }
-    // this.$emit('mountedCallback')
-    return () => {
-      cancelAnimationFrame(rAF)
-    }
-  }, [])
+  scheduleNextUpdate(now, delay) {
+    this.nextUpdate = Math.min(now + delay, this.endDate);
+  }
 
+  updateCounter(progress) {
+    const { from, to, easing } = this.props;
+    const delta = to - from;
+    const counter = from + delta * easing(progress);
+    this.setState({
+      counter,
+    });
+  }
 
-  return (
-    <div className="total-user">
-      {displayValue}
-    </div>
-  )
+  clear() {
+    cancelAnimationFrame(this.raf);
+  }
+
+  render() {
+    const { className, digits, tagName: Tag, children: fn } = this.props;
+    const { counter } = this.state;
+    const value = counter.toFixed(digits);
+
+    if (fn) {
+      return fn(value);
+    }
+
+    return (
+      <Tag className={className}>
+        {value}
+      </Tag>
+    );
+  }
 }
 
-CountTo.defaultProps = {
-  startVal: 0, // 开始值
-  endVal: 2021, // 结束值
-  duration: 3000, // 持续时间，以毫秒为单位
-  autoplay: true, // 自动播放
-  decimals: true, // 要显示的小数位数
-  decimal: 0, // 十进制分割
-  separator: '.', // 分隔符
-  prefix: '', // 前缀 
-  suffix: '', // 后缀
-  useEasing: true, // 使用缓和功能
-  easingFn: (t, b, c, d) => {
-    return c * (-Math.pow(2, -10 * t / d) + 1) * 1024 / 1023 + b;
-  } // 缓和回调
-}
+CountTo.propTypes = propTypes;
+CountTo.defaultProps = defaultProps;
 
 export default CountTo;
