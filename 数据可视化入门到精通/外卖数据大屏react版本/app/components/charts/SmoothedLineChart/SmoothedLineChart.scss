@@ -1,0 +1,17 @@
+@import 'default';
+
+.smoothed-line-chart {
+  width: 100%;
+  height: 100%;
+  .smoothed-line-chart-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    text-align: left;
+  }
+
+  .smoothed-line-chart-chart {
+    width: 100%;
+    height: 100%;
+  }
+}

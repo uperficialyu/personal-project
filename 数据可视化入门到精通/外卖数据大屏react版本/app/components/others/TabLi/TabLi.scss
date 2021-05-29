@@ -1,0 +1,51 @@
+@import 'default';
+
+.tab-li {
+  .tab-li-title {
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .tab-li-ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      width: 200px;
+      height: 71px;
+      margin-bottom: 19px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+
+      .tab-li-pic-div {
+        margin-right: 4px;
+        display: flex;
+        img {
+          width: 61px;
+          height: 71px;
+        }
+      }
+
+      .tab-li-content {
+        width: 130px;
+        .tab-li-content-name {
+          font-size: 16px;
+          margin-bottom: 5px;
+          background-color: rgba(14, 133, 216, 0.25);
+        }
+        .tab-li-content-count {
+          font-weight: bold;
+          color: rgba(255, 180, 0, 1);
+          font-size: 27px;
+          background-color: rgba(14, 133, 216, 0.25);
+        }
+      }
+    }
+  }
+}
