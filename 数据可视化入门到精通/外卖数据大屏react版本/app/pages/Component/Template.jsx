@@ -3,12 +3,13 @@
  * @Author: yushunping
  * @Date: 2020-08-21 18:47:17
  * @Last Modified by: yushunping
- * @Last Modified time: 2021-05-29 17:45:16
+ * @Last Modified time: 2021-05-29 22:15:55
  */
 
 import React, { Component } from 'react';
 import Container from 'components/Container/Container';
 import TabLi from 'components/others/TabLi/TabLi';
+import TabLi2 from 'components/others/TabLi2/TabLi2';
 import SmoothedLineChart from 'components/charts/SmoothedLineChart/SmoothedLineChart';
 import './Template.scss';
 
@@ -31,6 +32,9 @@ class Home extends Component {
             </div>
             <div className="page2">
               <SmoothedLineChart />
+            </div>
+            <div className="tab2">
+              <TabLi2 />
             </div>
           </main>
         </Container>
