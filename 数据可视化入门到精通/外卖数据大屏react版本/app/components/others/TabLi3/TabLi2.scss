@@ -1,0 +1,65 @@
+@import 'default';
+
+.tab-li2 {
+  .tab-li2-title {
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .tab-li2-ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      width: 200px;
+      height: 86px;
+      margin-bottom: 19px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      background: url('../../../style/images/others/icon9.png') no-repeat;
+      background-size: 100% 100%;
+      text-align: left;
+
+      .tab-li-pic-div {
+        margin-right: 4px;
+        margin-left: 15px;
+        display: flex;
+        width: 52px;
+        height: 52px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .tab-li-content {
+        width: 110px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: column;
+        .tab-li-content-name {
+          font-size: 18px;
+          color: #ffffff;
+        }
+        .tab-li-content-count {
+          font-weight: bold;
+          color: rgba(43, 178, 255, 1);
+          font-size: 35px;
+          .tab-li-content-count-unit {
+            font-weight: bold;
+            color: rgba(255, 255, 255, 1);
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
