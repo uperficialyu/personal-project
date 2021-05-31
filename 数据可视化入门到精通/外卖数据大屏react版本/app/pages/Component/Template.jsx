@@ -11,6 +11,7 @@ import Container from 'components/Container/Container';
 import TabLi from 'components/others/TabLi/TabLi';
 import TabLi2 from 'components/others/TabLi2/TabLi2';
 import SmoothedLineChart from 'components/charts/SmoothedLineChart/SmoothedLineChart';
+import Table1 from 'components/table/Table1/Table1';
 import './Template.scss';
 
 class Home extends Component {
@@ -35,6 +36,9 @@ class Home extends Component {
             </div>
             <div className="tab2">
               <TabLi2 />
+            </div>
+            <div className="table11">
+              <Table1 />
             </div>
           </main>
         </Container>
