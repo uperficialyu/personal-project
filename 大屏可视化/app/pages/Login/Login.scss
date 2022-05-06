@@ -1,0 +1,179 @@
+.login-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  background: url('../../style/images/login/login1.png');
+  .login-main-left {
+    position: absolute;
+    top: 200px;
+    left: 337px;
+    .login-main-left-top {
+      font-size: 36px;
+      font-family: Source Han Sans SC;
+      font-weight: bold;
+      color: #FFFEFE;
+      .login-main-left-top-text {
+        padding-left: 21px;
+      }
+    }
+    .login-main-left-bottom {
+      padding-top: 65px;
+    }
+  }
+  .login-main-right {
+    position: absolute;
+    top: 281px;
+    left: 1076px;
+    width: 480px;
+    height: 560px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    .login-main-right-title {
+      font-size: 32px;
+      font-family: Source Han Sans CN;
+      font-weight: bold;
+      color: #547BD5;
+      line-height: 48px;
+      padding-top: 73px;
+      padding-left: 81px;
+    }
+    .login-main-right-block {
+      margin: 61px 81px 0px 81px;
+      input {
+        width: 100%;
+        padding: 15px 0;
+        border: none;
+        font-size: 18px;
+        outline: none;
+        border-bottom: 1px solid #547bd5;
+        input:focus {
+          outline: none;
+        }
+        input::-webkit-input-placeholder {
+          /*Webkit browsers*/
+          color: #dfdfdd;
+          font-size: 18px;
+        }
+        input:-moz-placeholder {
+          /*Mozilla Firefox 4 to 8*/
+          color: #dfdfdd;
+          font-size: 18px;
+        }
+        input::moz-placeholder {
+          /*Mozilla Firefox 19+*/
+          color: #dfdfdd;
+          font-size: 18px;
+        }
+        input:-ms-input-placeholder {
+          /*Internet Explorer 10+*/
+          color: #dfdfdd;
+          font-size: 18px;
+        }
+      }
+      .login-main-right-label {
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #333333;
+      }
+      .login-main-right-ps {
+        position: relative;
+        span {
+          position: absolute;
+          right: 0;
+          top: 0.5208rem;
+          display: block;
+          width: 1.5625rem;
+          height: 1.5625rem;
+          cursor: pointer;
+        }
+        // .off {
+        //   background: url('../../assets/image/off.png') no-repeat;
+        //   background-size: 100% 100%;
+        // }
+        // .no {
+        //   background: url('../../assets/image/no.png') no-repeat;
+        //   background-size: 100% 100%;
+        // }
+      }
+    }
+    .login-main-right-submit {
+      width: 355px;
+      text-align: center;
+      height: 85px;
+      margin: 38px 65px 0 70px;
+      background: url('../../style/images/login/login4.png') no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+      font-family: Source Han Sans CN;
+      font-weight: 400;
+      font-size: 29px;
+      padding-top: 12px;
+      color: #ffffff;
+    }
+  }
+
+  // .login-img-header {
+  //   background: url('../../style/images/oneImg/one-bg-header2.png');
+  //   height: 110.6px;
+  // }
+  // .login {
+  //   // background: url('../../style/images/bg2.png');
+  //   // background-size: 100% 100%;
+  //   // height: 100vh;
+  //   // width: 100vw;
+
+  //   .center {
+  //     position: absolute;
+  //     left: 630px;
+  //     top: 235px;
+  //     width: 664.90px;
+  //     height: 755px;
+  //     background: rgba(15, 70, 140, 0.5);
+  //     background: url('../../style/images/oneImg/login.png') no-repeat;
+  //     background-size: 100% 100%;
+  //     border-radius: 3px;
+  //     padding: 150px 100px 100px 100px;
+
+  //     .account-title {
+  //       padding-top: 60px;
+  //       padding-left: 60px;
+  //       font-size: 24px;
+  //       color: white;
+  //     }
+
+  //     .login-account {
+  //       padding-left: 60px;
+  //       padding-top: 30px;
+  //     }
+
+  //     .submit {
+  //       width: 355px;
+  //     }
+
+  //     .ant-form-item-label {
+  //       label {
+  //         color: #FFFFFF;
+  //       }
+  //     }
+
+  //     .orgnization {
+  //       padding-top: 150px;
+  //       display: flex;
+  //       flex-wrap: wrap;
+  //       justify-content: center;
+
+  //       .selectItem {
+  //         width: 400px;
+  //       }
+
+  //       .submit {
+  //         width: 400px;
+  //         margin-top: 30px;
+  //       }
+  //     }
+  //   }
+  // }
+}

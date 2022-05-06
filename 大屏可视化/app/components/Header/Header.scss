@@ -1,0 +1,74 @@
+.header {
+  background: url('.././../style/images/component/top-bg.png') no-repeat;
+  height: 96px;
+  background-size: 100% 100%;
+  // font-size: 56px;
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+  color: white;
+  .header-left {
+    font-size: 48px;
+    font-family: YouSheBiaoTiHei;
+    font-weight: 600;
+    color: #FFFFFF;
+    font-style: italic;
+    width: 565px;
+    display: flex;
+    justify-content: center;
+  }
+  .header-middle {
+    display: flex;
+    align-items: center;
+    .header-middle-item {
+      width: 159px;
+      display: flex;
+      align-items: center;
+      font-size: 23px;
+      font-family: Source Han Sans CN;
+      font-weight: bold;
+      font-style: italic;
+      color: #83C0ED;
+      cursor: pointer;
+    }
+    .header-middle-item-active {
+      color: #FFFFFF;
+    }
+  }
+  // .header-date {
+  //   position: absolute;
+  //   top: 24px;
+  //   left: 5px;
+  //   color: #85B0CA;
+  //   font-size: 18px;
+  // }
+  // .header-left {
+  //   position: absolute;
+  //   top: 7px;
+  //   left: 226px;
+  //   color: #fff;
+  //   font-size: 36px;
+  //   font-weight: bold;
+  //   cursor: pointer;
+  // }
+  .header-right {
+    position: absolute;
+    top: 25px;
+    right: 28px;
+    font-size: 20px;
+    font-family: Source Han Sans CN;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .header-active {
+    color: #00F6FF;
+  }
+  .header-tec {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: #85B0CA;
+    font-size: 18px;
+  }
+}

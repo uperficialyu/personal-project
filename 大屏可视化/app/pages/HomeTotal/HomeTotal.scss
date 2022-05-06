@@ -1,0 +1,33 @@
+.home-total {
+  .home-total-center {
+    position: absolute;
+    top: 200px;
+    left: 1200px;
+    z-index: 3;
+    .home-total-left-pic5-item {
+      cursor: pointer;
+      .home-total-left-pic5-item-bg {
+        background: url('../../style/images/homeTotal/homeTotalCheck.png') no-repeat;
+        background-size: 100% 100%;
+        width: 131px;
+        height: 144px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .home-total-left-pic5-item-bg-hover {
+        background: url('../../style/images/homeTotal/homeTotalCheckHover.png') no-repeat;
+        background-size: 100% 100%;
+      }
+      .home-total-left-pic5-item-title {
+        color: #CDDCFF;
+        text-align: center;
+        margin-top: -10px;
+        font-size: 18px;
+      }
+      .home-total-left-pic5-item-title-active {
+        color: #F0C926;
+      }
+    }
+  }
+}

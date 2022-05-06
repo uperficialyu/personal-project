@@ -1,0 +1,252 @@
+.organic-tea {
+  .organic-tea-left {
+    position: absolute;
+    left: 0;
+    top: 100px;
+
+    .organic-tea-item1 {
+      background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+      width: 540px;
+      height: 261px;
+      background-size: 100% 100%;
+      .organic-tea-item1-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 210px;
+        .organic-tea-item1-content-item {
+          text-align: center;
+          .organic-tea-item1-content-item-top {
+            width: 116px;
+            height: 112px;
+            background-size: 100% 100%;
+            color: white;
+            font-size: 33.66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .organic-tea-item1-content-item-bottom {
+            color: #ADE1FF;
+            font-size: 18px;
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .organic-tea-right {
+    position: absolute;
+    right: 0;
+    top: 100px;
+    .organic-tea-item6 {
+      background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+      width: 540px;
+      height: 313px;
+      background-size: 100% 100%;
+      margin-top: 20px;
+      .organic-tea-item6-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 269px;
+        .organic-tea-item6-content-video {
+          width: 445px;
+          height: 220px;
+          border: 2px solid #0B6994;
+        }
+      }
+    }
+  }
+
+  .organic-tea-center {
+    position: absolute;
+    left: 550px;
+    top: 70px;
+    width: 800px;
+    .organic-tea-center-child {
+      .organic-tea-center-child-bottom {
+        position: fixed;
+        bottom: 30px;
+        width: 800px;
+      }
+      .tea-plant-center-map {
+        margin-top: 100px;
+        width: 820px;
+        height: 730px;
+        .soil-iframe {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .organic-tea-item2 {
+    background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+    width: 540px;
+    height: 330px;
+    background-size: 100% 100%;
+    .organic-tea-item2-pig {
+      height: 289px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .organic-tea-item3 {
+    background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+    width: 540px;
+    height: 281px;
+    background-size: 100% 100%;
+    margin-top: 20px;
+    .organic-tea-item3-content {
+      .organic-tea-item3-content-title {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: 507px;
+        background: #0B6994;
+        border-radius: 3px;
+        margin-top: 20px;
+        margin-left: 15px;
+        color: #FFFFFF;
+        font-size: 18px;
+        .organic-tea-item3-content-title-div {
+          flex: 1;
+          text-align: center;
+        }
+      }
+      .organic-tea-item3-content-bottom {
+        height: 160px;
+        overflow-y: auto;
+        .organic-tea-item3-content-bottom-col {
+          display: flex;
+          background: url('../../style/images/organicTea/organicTea-item3.png');
+          width: 506px;
+          height: 50px;
+          align-items: center;
+          margin-left: 15px;
+          margin-top: 3px;
+          .organic-tea-item3-content-bottom-row {
+            flex: 1;
+            text-align: center;
+            color: #ADE1FF;
+            font-size: 18px;
+          }
+        }
+      }
+      .organic-tea-item3-content-bottom::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+        background-color: #fff;
+      }
+      
+      .organic-tea-item3-content-bottom::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+      }
+    }
+  }
+
+  .organic-tea-item4 {
+    background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+    width: 540px;
+    height: 327px;
+    background-size: 100% 100%;
+    margin-top: 20px;
+    .companyText{
+      color: white;
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translate(-50%);
+      font-size: 18px;
+    }
+    .organic-tea-item4-content {
+      height: 280px;
+      position: relative;
+      .organic-tea-item4-content-left {
+        left: 16px;
+        top: 110px;
+        position: absolute;
+      }
+      .organic-tea-item4-content-right {
+        right: 16px;
+        top: 110px;
+        position: absolute;
+      }
+      .organic-tea-item4-content-img {
+        position: absolute;
+        left: 46px;
+        width: 445.1px;
+        height: 221px;
+        top: 19px;
+        border: 2px solid #0B6994;
+        .organic-tea-item4-content-img-child {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .organic-tea-item5 {
+    background: url('../../style/images/organicTea/organicTea-item1.png') no-repeat;
+    width: 540px;
+    height: 330px;
+    background-size: 100% 100%;
+    margin-top: 20px;
+    .organic-tea-item5-content {
+      .organic-tea-item5-content-title {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: 507px;
+        background: #0B6994;
+        border-radius: 3px;
+        margin-top: 20px;
+        margin-left: 15px;
+        color: #FFFFFF;
+        font-size: 18px;
+        .organic-tea-item5-content-title-div {
+          flex: 1;
+          text-align: center;
+        }
+      }
+      .organic-tea-item5-content-bottom {
+        height: 218px;
+        overflow-y: auto;
+        .organic-tea-item5-content-bottom-col {
+          display: flex;
+          background: url('../../style/images/organicTea/organicTea-item3.png');
+          width: 506px;
+          height: 50px;
+          align-items: center;
+          margin-left: 15px;
+          margin-top: 3px;
+          .organic-tea-item5-content-bottom-row {
+            flex: 1;
+            text-align: center;
+            color: #ADE1FF;
+            font-size: 18px;
+          }
+        }
+      }
+      .organic-tea-item5-content-bottom::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+        background-color: #fff;
+      }
+      
+      .organic-tea-item5-content-bottom::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+      }
+    }
+  }
+}

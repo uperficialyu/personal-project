@@ -1,0 +1,200 @@
+.propagation-path {
+  .propagation-path-content {
+    display: flex;
+    padding-top: 33px;
+
+    .propagation-path-content-left {
+      margin-left: 26px;
+      position: relative;
+      .propagation-path-item1 {
+        background: url('.././../style/images/home/home1.png') no-repeat;
+        background-size: 100% 100%;
+        width: 288px;
+        height: 862px;
+        padding: 1px;
+        .propagation-path-item1-content {
+          overflow-y: auto;
+          height: 800px;
+          .propagation-path-item1-bottom-item {
+            background: url('.././../style/images/home/home4.png') no-repeat;
+            background-size: 100% 100%;
+            width: 263px;
+            height: 80px;
+            margin-top: 16px;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            .propagation-path-item1-bottom-item1 {
+              width: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .propagation-path-item1-bottom-item2 {
+                width: 6px;
+                height: 6px;
+                background: #8CDAFF;
+                border-radius: 50%;
+              }
+            }
+            .propagation-path-item1-bottom-item3 {
+              width: 233px;
+              .propagation-path-item1-bottom-item4 {
+                font-size: 18px;
+                font-family: Source Han Sans CN;
+                font-weight: bold;
+                color: #FFFFFF;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                padding-right: 20px;
+              }
+              .propagation-path-item1-bottom-item5 {
+                display: flex;
+                justify-content: space-between;
+                font-size: 16px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #5F8EB9;
+                .propagation-path-item1-bottom-item6 {
+                  padding-right: 20px;
+                }
+              }
+              .propagation-path-item1-bottom-item5-active {
+                color: #BE978D;
+              }
+            }
+          }
+          .propagation-path-item1-bottom-item-active {
+            background: url('.././../style/images/home/home5.png') no-repeat;
+            background-size: 100% 100%;
+            width: 263px;
+            height: 80px;
+          }
+        }
+        .propagation-path-item1-content::-webkit-scrollbar {
+          width: 1px;
+          height: 16px;
+          background-color: #F5F5F5;
+        }
+        /*定义滚动条轨道 内阴影+圆角*/
+        .propagation-path-item1-content::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
+          background-color: #F5F5F5;
+        }
+        /*定义滑块 内阴影+圆角*/
+        .propagation-path-item1-content::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+          background-color: #555;
+        }
+      }
+      .propagation-path-content-left-tab {
+        position: absolute;
+        top: 364px;
+        right: -24px;
+        cursor: pointer;
+      }
+    }
+    .propagation-path-content-right {
+      display: flex;
+      padding-left: 31px;
+      padding-right: 31px;
+      width: 100%;
+      .propagation-path-content-right-left {
+        width: 45%;
+      }
+      .propagation-path-content-right-right {
+        margin-left: 31px;
+        width: 55%;
+      }
+      .propagation-path-item2 {
+        background: url('.././../style/images/home/home21.png') no-repeat;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 862px;
+        overflow-y: auto;
+        .propagation-path-item2-content-share {
+          padding-top: 18px;
+          text-align: right;
+          font-size: 18px;
+          font-family: Source Han Sans CN;
+          font-weight: 400;
+          color: #F98738;
+          padding-right: 18px;
+        }
+        .propagation-path-item2-content-title {
+          font-size: 28px;
+          font-family: Source Han Sans CN;
+          font-weight: bold;
+          color: #FFFFFF;
+          line-height: 36px;
+          text-align: center;
+          padding: 24px 90px 0px 90px;
+        }
+        .propagation-path-item2-content-sourse {
+          font-size: 16px;
+          font-family: Source Han Sans CN;
+          font-weight: 400;
+          color: #5F8EB9;
+          text-align: right;
+          padding-top: 20px;
+          span {
+            padding-right: 20px;
+          }
+        }
+        .propagation-path-item2-content-content {
+          font-size: 18px;
+          font-family: Source Han Sans CN;
+          font-weight: 400;
+          color: #FFFFFF;
+          padding: 29px 20px 20px 20px;
+          overflow-y: auto;
+          height: 640px;
+        }
+      }
+      .propagation-path-item2::-webkit-scrollbar {
+        width: 1px;
+        height: 16px;
+        background-color: #F5F5F5;
+      }
+      /*定义滚动条轨道 内阴影+圆角*/
+      .propagation-path-item2::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+      }
+      /*定义滑块 内阴影+圆角*/
+      .propagation-path-item2::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #555;
+      }
+      .propagation-path-item4 {
+        background: url('.././../style/images/home/home22.png') no-repeat;
+        background-size: 100% 100%;
+        width: 842px;
+        width: 100%;
+        height: 862px;
+        .propagation-path-item4-chart {
+          height: 800px;
+          width: 100%;
+        }
+      }
+    }
+    .propagation-path-item-title {
+      font-size: 22px;
+      font-family: Source Han Sans CN;
+      font-weight: bold;
+      color: #FFFFFF;
+      padding-left: 21px;
+    }
+  }
+}

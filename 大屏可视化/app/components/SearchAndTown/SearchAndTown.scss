@@ -1,0 +1,61 @@
+.search-andTown {
+  @mixin public-select {
+    background: #0560B7;
+    background: linear-gradient(0deg, #203E82, #070745);
+    border: none;
+    border: 1px solid #07EFDD;
+    color: #38ACF3;
+    font-size: 18px;
+    line-height: 40px;
+    height: 40px;
+    border-radius: 5px;
+    option {
+      background-color: #0B2052;
+    }
+    option:hover {
+      color: #FFD200;
+    }
+  }
+  .search-andTown-search {
+    background: url('../../style/images/component/search.png');
+    width: 493px;
+    height: 90px;
+    .search-andTown-search-input {
+      margin-top: 22px;
+      margin-left: 108px;
+      line-height: 23px;
+      background: #000C39;
+      border: none;
+      color: white;
+      outline: none;
+      width: 220px;
+    }
+    .search-andTown-search-input::-webkit-input-placeholder {
+      color: white;
+    }
+    .search-andTown-search-button {
+      color: white;
+      padding-left: 90px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .search-andTown-town {
+    margin-top: 20px;
+    display: flex;
+    .search-andTown-town-left {
+      .item-select {
+        @include public-select;
+        width: 140px;
+      }
+    }
+    .search-andTown-town-right {
+      margin-left: 20px;
+      .item-select {
+        @include public-select;
+        width: 140px;
+      }
+    }
+  }
+}

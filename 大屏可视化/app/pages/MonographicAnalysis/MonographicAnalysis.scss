@@ -1,0 +1,109 @@
+.monographic-analysis {
+  .monographic-analysis-content {
+    display: flex;
+    padding-top: 33px;
+    .monographic-analysis-content-left {
+      padding-left: 26px;
+      .monographic-analysis-content-left-item1 {}
+      .monographic-analysis-content-left-item2 {
+        margin-top: 34px;
+      }
+      .monographic-analysis-content-left-item3 {
+        margin-top: 34px;
+      }
+      .monographic-analysis-content-left-item4 {
+        margin-top: 34px;
+      }
+      .monographic-analysis-item1 {
+        background: url('.././../style/images/home/home23.png') no-repeat;
+        background-size: 100% 100%;
+        width: 384px;
+        height: 149px;
+        .monographic-analysis-item1-swiper {
+          height: 109px;
+          padding-top: 15px;
+        }
+      }
+      .monographic-analysis-item2 {
+        background: url('.././../style/images/home/home24.png') no-repeat;
+        background-size: 100% 100%;
+        width: 384px;
+        height: 380px;
+        .monographic-analysis-item2-chart {
+          width: 380px;
+          height: 350px;
+          padding-top: 20px;
+        }
+      }
+    }
+
+    .monographic-analysis-content-right {
+      width: 100%;
+      padding: 0 26px;
+      .monographic-analysis-content-right-top {
+        height: 149px;
+        display: flex;
+        .monographic-analysis-content-right-top-left {
+          width: 33%;
+        }
+        .monographic-analysis-content-right-top-center {
+          width: 33%;
+        }
+        .monographic-analysis-content-right-top-right {
+          width: 33%;
+        }
+      }
+      .monographic-analysis-content-right-middle {
+        margin-top: 34px;
+        height: 323px;
+        display: flex;
+        .monographic-analysis-content-right-middle-left {
+        }
+        .monographic-analysis-content-right-middle-right {
+          margin-left: 26px;
+        }
+      }
+      .monographic-analysis-content-right-bottom {
+        margin-top: 34px;
+        height: 380px;
+        display: flex;
+        .monographic-analysis-content-right-bottom-left {
+        }
+        .monographic-analysis-content-right-bottom-right {
+          margin-left: 26px;
+        }
+      }
+      .monographic-analysis-item3 {
+        background: url('.././../style/images/home/home25.png') no-repeat;
+        background-size: 100% 100%;
+        width: 713px;
+        height: 323px;
+        .monographic-analysis-item3-chart {
+          height: 283px;
+          padding-top: 15px;
+        }
+      }
+      .monographic-analysis-item4 {
+        background: url('.././../style/images/home/home26.png') no-repeat;
+        background-size: 100% 100%;
+        width: 713px;
+        height: 380px;
+        .monographic-analysis-item4-chart {
+          height: 340px;
+        }
+      }
+      .monographic-analysis-item5 {
+        height: 200px;
+        width: 100%;
+        padding-bottom: 15px;
+      }
+    }
+    .monographic-analysis-item-title {
+      font-size: 22px;
+      font-family: Source Han Sans CN;
+      font-weight: bold;
+      color: #FFFFFF;
+      padding-left: 21px;
+    }
+  }
+}

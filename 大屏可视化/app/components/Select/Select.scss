@@ -1,0 +1,27 @@
+.select {
+  background: linear-gradient(0deg, #203E82, #070745);
+  width: 100%;
+  color: #38ACF3;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .select-content {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    .select-content-img {
+      padding-left: 5px;
+    }
+  }
+  .select-modal {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100px;
+    border: 1px solid #1F6EE5;
+    font-size: 18px;
+  }
+ 
+}

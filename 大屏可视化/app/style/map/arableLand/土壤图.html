@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>土壤图</title>
+	<meta charset='utf-8' />
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script type="text/javascript" src="http://gis.zigui.kf315.net/api/mapbox.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<style type="text/css">
+		html,
+		body {
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+	<script type="text/javascript">
+		var map;
+		var extent = [
+			[110.308409, 30.635397],
+			[111.002131, 31.191683]
+		];
+		var max_extent = [
+			[110.027, 30.575],
+			[111.391, 31.252]
+		];
+
+		function onloadhandler() {
+			map = new EMap("mapcontent", {
+				center: [110.686, 30.921],
+				zoom: 10,
+				style: "Zigui",
+				config: 'none'
+			});
+			map.addEventListener(EMap.Events.onMapLoaded, function (e) {
+				map.setMaxBounds(max_extent);
+				map.fitBounds(extent, 100, 0, false);
+				map.setLayerVisibleById("town_bounds", true);
+				map.setLayerVisibleById("town_font", true);
+				map.setLayerVisibleById('tiandistatellite84', true);
+				map.setLayerVisibleById('tiandistatellitelabel84', true);
+				map.setLayerVisibleById('dom', true);
+				addLayer();
+			});
+
+			map.addEventListener(EMap.Events.onFeatureClick, function (e) {
+				console.log(e);
+				map.destroyInfoSymbol();
+				var html = '<div style="width:auto;height:auto;"><font color="#000" size="1">亚类：' + e.properties["亚类"] + '</font></div>';
+				map.createInfoSymbol("label", html, e.coordinates[0][0], [0, 0], "left", true);
+			});
+			map.addEventListener(EMap.Events.onMapExtentChange, function (e) {
+				if ($("#village").prop("checked")) {
+					if (map.getZoom() < 12) {
+						map.setLayerVisibleById("town_bounds", true);
+						map.setLayerVisibleById("town_font", true);
+						map.setLayerVisibleById("village_bounds", false);
+						map.setLayerVisibleById("village_font", false);
+					} else {
+						map.setLayerVisibleById("town_bounds", false);
+						map.setLayerVisibleById("town_font", false);
+						map.setLayerVisibleById("village_bounds", true);
+						map.setLayerVisibleById("village_font", true);
+					}
+				}
+			});
+		}
+		$(function () {
+			$('#dom').change(function () {
+				map.setLayerVisibleById('dom', $(this).prop("checked"));
+			});
+			$('#village').change(function () {
+				if ($("#village").prop("checked")) {
+					if (map.getZoom() < 12) {
+						map.setLayerVisibleById("town_bounds", true);
+						map.setLayerVisibleById("town_font", true);
+						map.setLayerVisibleById("village_bounds", false);
+						map.setLayerVisibleById("village_font", false);
+					} else {
+						map.setLayerVisibleById("town_bounds", false);
+						map.setLayerVisibleById("town_font", false);
+						map.setLayerVisibleById("village_bounds", true);
+						map.setLayerVisibleById("village_font", true);
+					}
+				} else {
+					map.setLayerVisibleById('town_bounds', false);
+					map.setLayerVisibleById('town_font', false);
+					map.setLayerVisibleById('village_bounds', false);
+					map.setLayerVisibleById('village_font', false);
+				}
+			});
+			$('#soil').change(function () {
+				map.destroyInfoSymbol();
+				map.setLayerVisibleById('soil', $(this).prop("checked"));
+			});
+			$('#town_select').change(function () {
+				var value = $(this).val();
+				var json = [{
+					name: "茅坪镇",
+					extent: [[110.8414, 30.7085], [111.0021, 30.9154]]
+				}, {
+					name: "屈原镇",
+					extent: [[110.7493, 30.8891], [110.9128, 31.1207]]
+				}, {
+					name: "归州镇",
+					extent: [[110.6414, 30.9547], [110.8042, 31.1213]]
+				}, {
+					name: "水田坝乡",
+					extent: [[110.5744, 31.0160], [110.7426, 31.1911]]
+				}, {
+					name: "泄滩乡",
+					extent: [[110.4594, 30.9965], [110.6565, 31.1377]]
+				}, {
+					name: "沙镇溪镇",
+					extent: [[110.4301, 30.8982], [110.6594, 31.0405]]
+				}, {
+					name: "两河口镇",
+					extent: [[110.4406, 30.7289], [110.6263, 30.9362]]
+				}, {
+					name: "磨坪乡",
+					extent: [[110.3114, 30.7416], [110.4763, 30.8800]]
+				}, {
+					name: "梅家河乡",
+					extent: [[110.4195, 30.8328], [110.5379, 30.9693]]
+				}, {
+					name: "郭家坝镇",
+					extent: [[110.5840, 30.7384], [110.8204, 31.0020]]
+				}, {
+					name: "九畹溪镇",
+					extent: [[110.6700, 30.6752], [110.8932, 30.9029]]
+				}, {
+					name: "杨林桥镇",
+					extent: [[110.5896, 30.6369], [110.8124, 30.7950]]
+				}];
+				if (value === "all") {
+					map.fitBounds(extent, 100, 0, false);
+				} else {
+					for (var i = 0; i < json.length; i++) {
+						if (value === json[i].name) {
+							map.fitBounds(json[i].extent, 10, 0, false);
+							break;
+						}
+					}
+				}
+			});
+		});
+
+		function domClick(isShow) {
+			map.setLayerVisibleById('dom', isShow);
+		}
+
+		function villageClick(isShow) {
+			if (isShow) {
+				if (map.getZoom() < 12) {
+						map.setLayerVisibleById("town_bounds", true);
+						map.setLayerVisibleById("town_font", true);
+						map.setLayerVisibleById("village_bounds", false);
+						map.setLayerVisibleById("village_font", false);
+					} else {
+						map.setLayerVisibleById("town_bounds", false);
+						map.setLayerVisibleById("town_font", false);
+						map.setLayerVisibleById("village_bounds", true);
+						map.setLayerVisibleById("village_font", true);
+					}
+				} else {
+					map.setLayerVisibleById('town_bounds', false);
+					map.setLayerVisibleById('town_font', false);
+					map.setLayerVisibleById('village_bounds', false);
+					map.setLayerVisibleById('village_font', false);
+				}
+		}
+
+		function cultivated_land_pointsClick(isShow) {
+			map.destroyInfoSymbol();
+			map.setLayerVisibleById('soil', isShow);
+		}
+
+		function town_selectClicl(value) {
+			var json = [{
+				name: "茅坪镇",
+				extent: [[110.8414, 30.7085], [111.0021, 30.9154]]
+			}, {
+				name: "屈原镇",
+				extent: [[110.7493, 30.8891], [110.9128, 31.1207]]
+			}, {
+				name: "归州镇",
+				extent: [[110.6414, 30.9547], [110.8042, 31.1213]]
+			}, {
+				name: "水田坝乡",
+				extent: [[110.5744, 31.0160], [110.7426, 31.1911]]
+			}, {
+				name: "泄滩乡",
+				extent: [[110.4594, 30.9965], [110.6565, 31.1377]]
+			}, {
+				name: "沙镇溪镇",
+				extent: [[110.4301, 30.8982], [110.6594, 31.0405]]
+			}, {
+				name: "两河口镇",
+				extent: [[110.4406, 30.7289], [110.6263, 30.9362]]
+			}, {
+				name: "磨坪乡",
+				extent: [[110.3114, 30.7416], [110.4763, 30.8800]]
+			}, {
+				name: "梅家河乡",
+				extent: [[110.4195, 30.8328], [110.5379, 30.9693]]
+			}, {
+				name: "郭家坝镇",
+				extent: [[110.5840, 30.7384], [110.8204, 31.0020]]
+			}, {
+				name: "九畹溪镇",
+				extent: [[110.6700, 30.6752], [110.8932, 30.9029]]
+			}, {
+				name: "杨林桥镇",
+				extent: [[110.5896, 30.6369], [110.8124, 30.7950]]
+			}];
+			if (value === "all") {
+				map.fitBounds(extent, 100, 0, false);
+			} else {
+				for (var i = 0; i < json.length; i++) {
+					if (value === json[i].name) {
+						map.fitBounds(json[i].extent, 10, 0, false);
+						break;
+					}
+				}
+			}
+		}
+
+		//打开卫星底图
+		function statelliteLayer() {
+			map.setLayerVisibleById('tiandivector84', false);
+			map.setLayerVisibleById('tiandivectorlabel84', false);
+			map.setLayerVisibleById('tianditerrain', false);
+			map.setLayerVisibleById('tianditerrainlabel', false);
+			map.setLayerVisibleById('tiandistatellite84', true);
+			map.setLayerVisibleById('tiandistatellitelabel84', true);
+		}
+		//行政区划图
+		function vectorLayer() {
+			map.setLayerVisibleById('tiandivector84', true);
+			map.setLayerVisibleById('tiandivectorlabel84', true);
+			map.setLayerVisibleById('tianditerrain', false);
+			map.setLayerVisibleById('tianditerrainlabel', false);
+			map.setLayerVisibleById('tiandistatellite84', false);
+			map.setLayerVisibleById('tiandistatellitelabel84', false);
+		}
+		//地形图
+		function terrainLayer() {
+			map.setLayerVisibleById('tiandivector84', false);
+			map.setLayerVisibleById('tiandivectorlabel84', false);
+			map.setLayerVisibleById('tianditerrain', true);
+			map.setLayerVisibleById('tianditerrainlabel', true);
+			map.setLayerVisibleById('tiandistatellite84', false);
+			map.setLayerVisibleById('tiandistatellitelabel84', false);
+		}
+
+		function addLayer() {
+			map.addLayer({
+				"id": "soil",
+				"type": "fill",
+				'source': {
+					'scheme':'tms',
+					'type': 'vector',
+					'tiles': [
+						geoserver_ip + "geoserver/gwc/service/tms/1.0.0/cite%3Asoil@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf"
+					]
+				},
+				"click": true,
+				"source-layer": "soil",
+				"paint": {
+					'fill-color': [
+						"match",
+						["get", "亚类"],
+						"黄壤",
+						"#FFC0D9",
+						"黄壤性土",
+						"#B6FCB4",
+						"黄棕壤性土",
+						"#B7F1FF",
+						"灰潮土",
+						"#FAE2B2",
+						"灰紫色土",
+						"#B9B3F9",
+						"潜育型水稻土",
+						"#CDD5FC",
+						"山地黄棕壤",
+						"#F9B5FE",
+						"酸性紫色土",
+						"#CFFADF",
+						"酸性棕壤",
+						"#FBC6B8",
+						"淹育型水稻土",
+						"#DFFCBC",
+						"沼泽型水稻土",
+						"#FCEED4",
+						"中性紫色土",
+						"#EBCBFD",
+						"潴育型水稻土",
+						"#F0FDD1",
+						"棕色石灰土",
+						"#BDFBCA",
+						"#000000"
+					],
+					'fill-opacity': 1
+				}
+			}, "town_bounds");
+		}
+	</script>
+</head>
+
+<body class="soria" onload="onloadhandler()">
+	<div id="mapcontent" style="width: 100%; height: 100%;"></div>
+	<!-- <button style="position:absolute;top:0;left:0" id="statellite" onclick="statelliteLayer()">卫星图</button>
+	<button style="position:absolute;top:0;left:100px" id="vector" onclick="vectorLayer()">行政区划图</button>
+	<button style="position:absolute;top:0;left:200px" id="terrain" onclick="terrainLayer()">地形图</button> -->
+
+	<!-- <label style="position:absolute;top:30px;left:0"><input id="dom" type="checkbox" checked />正射影像</label>
+	<label style="position:absolute;top:60px;left:0"><input id="village" type="checkbox" checked />行政村</label>
+	<label style="position:absolute;top:90px;left:0"><input id="soil" type="checkbox" checked />土壤图</label> -->
+
+	<!-- <select id="town_select" style="position:absolute;top:120px;left:0">
+		<option value="all">全县</option>
+		<option value="水田坝乡">水田坝乡</option>
+		<option value="屈原镇">屈原镇</option>
+		<option value="归州镇">归州镇</option>
+		<option value="郭家坝镇">郭家坝镇</option> 
+		<option value="九畹溪镇">九畹溪镇</option>
+		<option value="茅坪镇">茅坪镇</option>
+		<option value="杨林桥镇">杨林桥镇</option>
+		<option value="梅家河乡">梅家河乡</option>
+		<option value="磨坪乡">磨坪乡</option>
+		<option value="两河口镇">两河口镇</option>
+		<option value="沙镇溪镇">沙镇溪镇</option>
+		<option value="泄滩乡">泄滩乡</option>
+	</select> -->
+</body>
+
+</html>

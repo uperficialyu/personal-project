@@ -1,0 +1,341 @@
+.meteorological {
+  color: white;
+
+  .meteorological-map {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 0;
+
+    .meteorological-iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+  }
+
+  .meteorological-left {
+    position: absolute;
+    z-index: 1;
+
+    .meteorological-left-top {
+      width: 543px;
+      height: 331px;
+      background: url('../../style/images/meteorological/left2.png');
+      margin-top: 50px;
+      margin-left: 30px;
+      background-size: 100% 100%;
+
+      .meteorological-left-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+.lefttopitem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lefttopTem {
+  font-size: 36px;
+}
+
+.lefttopwind {
+  font-size: 18px;
+}
+
+.lefttoppm {
+  font-size: 18px;
+}
+
+.lefttopgood {
+  background: #63C423;
+  font-size: 18px;
+  padding: 3px 10px;
+  display: inline-block;
+  border-radius: 11px;
+}
+
+.lefttopqing {
+  font-size: 30px;
+}
+
+.lefttopson {
+  width: 30px;
+  height: 30px;
+}
+
+.lefttopcontent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.lefttopcontentitem {
+  width: 202px;
+  height: 30px;
+  margin-top: 16px;
+  margin-right: 44px;
+}
+
+.lefttopcontentitemtitle {
+  display: inline-block;
+  width: 50%;
+  padding-left: 40px;
+  line-height: 30px;
+}
+
+.lefttopcontentitemvalue {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.lefttopbotton {
+  padding-top: 37px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leftbottom {
+  width: 540px;
+  height: 357px;
+  background: url('../../style//images/meteorological/left3.png');
+  margin-top: 30px;
+  margin-left: 30px;
+  background-size: 100% 100%;
+}
+
+.leftbottomtitle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 20px 0px 20px;
+}
+
+.leftbottomtitleitem {
+  width: 120px;
+  height: 42px;
+  background: url('../../style//images/meteorological/noactive.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #54CBB0;
+  cursor: pointer;
+}
+
+.leftbottomtitleitemactive {
+  width: 120px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #54CBB0;
+  cursor: pointer;
+  background: url('../../style//images/meteorological/active.png');
+  color: #FFFFFF;
+}
+
+.leftbottomimg {
+  text-align: center;
+  padding-top: 37px;
+}
+
+.leftbottomchart1 {
+  margin-top: 20px;
+  width: 540px;
+  height: 195px;
+}
+
+.middle {
+  flex: 2;
+}
+
+.middleiframe {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 1080px;
+  // height: 900px;
+  z-index: -1;
+}
+
+.middletab {
+  background: url('../../style//images/meteorological/20.png');
+  width: 133px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.middletabactive {
+  background: url('../../style//images/meteorological/20.png');
+  width: 133px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #FED426;
+}
+
+.middletabposition {
+  position: absolute;
+  bottom: 214px;
+  right: 280px;
+}
+
+.middletabspan {
+  padding-left: 10px;
+}
+
+.middletimeposition {
+  background: url('../../style//images/meteorological/time.png');
+  width: 1858.5px;
+  height: 122px;
+  position: absolute;
+  bottom: 40px;
+  left: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.middletimepositionstart {
+  cursor: pointer;
+}
+
+.middletimepositionline {
+  display: flex;
+}
+
+.middletimepositionlineitem {
+  position: relative;
+  cursor: pointer;
+}
+
+.middletimepositionlineitemtop {
+  width: 65px;
+  height: 10px;
+  background: #238E6B;
+}
+
+.middletimepositionlineitemtop:nth-last-child(0) {
+  width: 0px;
+  background: red;
+}
+
+.middletimepositionlineitemmiddle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #238E6B;
+  position: absolute;
+  top: -5px;
+}
+
+.middletimepositionlineitemmiddle1 {
+  position: absolute;
+  width: 3px;
+  height: 15px;
+  background: #238E6B;
+  left: 8px;
+}
+
+.middletimepositionlineitemmiddleactive {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  background: #FFE000;
+}
+
+.middletimepositionlineitemmiddle1active {
+  position: absolute;
+  width: 3px;
+  height: 15px;
+  left: 8px;
+  background: #FFE000;
+}
+
+.middletimepositiontime {
+  background: url('../../style//images/meteorological/date.png');
+  width: 160px;
+  height: 42px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.middletimepositionlineitembottom {
+  position: absolute;
+  top: 30px;
+  left: 0px;
+}
+
+.right {
+  flex: 1;
+  position: absolute;
+  z-index: 1;
+  right: 0px;
+}
+
+.righttop {
+  width: 430px;
+  height: 429px;
+  background: url('../../style//images/meteorological/notice.png');
+  margin-top: 113px;
+}
+
+.righttoptitle {
+  padding-top: 17px;
+  padding-left: 17px;
+  color: #2EFFFD;
+}
+
+.righttopcontent {
+  padding-left: 17px;
+  padding-right: 17px;
+}
+
+.righttopcontent2title {
+  width: 385px;
+  height: 40px;
+  background: #145155;
+  margin: 20px 20px 0px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.righttopcontent2height {
+  height: 200px;
+}
+
+.righttopcontent2Item {
+  margin: 13px 20px 0px 20px;
+  background: #145155;
+  color: #80BEDB;
+  padding: 3px 3px 3px 3px;
+  font-size: 16px;
+  border-radius: 3px;
+}

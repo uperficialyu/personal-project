@@ -1,0 +1,81 @@
+.date-swiper {
+  background: url('../../style/images/component/bottom.png');
+  width: 1307px;
+  height: 133px;
+  display: flex;
+  .date-swiper-left {
+    width: 140px;
+    height: 133px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .date-swiper-middle {
+    width: 1020px;
+    height: 133px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .date-swiper-middle-mounth-parent {
+      display: flex;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      padding-bottom: 20px;
+      justify-content: space-evenly;
+      .date-swiper-middle-mounth {
+        position: relative;
+        .date-swiper-middle-mounth-line {
+          position: absolute;
+          bottom: -20px;
+          left: 15px;
+          width: 2px;
+          height: 14px;
+          background-color: #00BAFF;
+        }
+        .date-swiper-middle-mounth-circle {
+          position: absolute;
+          bottom: -32px;
+          left: 7px;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background-color: #FFCC00;
+        }
+      }
+      .date-swiper-middle-mounth-active {
+        color: #FFCC00;
+      }
+      .date-swiper-middle-mounth-line-active {
+        background-color: #FFCC00;
+      }
+    }
+   
+    .date-swiper-middle-bg {
+      height: 20px;
+      width: 960px;
+      background: #0089FF;
+      border-radius: 10px;
+    }
+    // background: red;
+  }
+
+  .date-swiper-right {
+    width: 130px;
+    height: 133px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .date-swiper-right-year {
+      background: url('../../style/images/component/year.png');
+      width: 134px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 18px;
+      padding-left: 55px;
+    }
+  }
+}

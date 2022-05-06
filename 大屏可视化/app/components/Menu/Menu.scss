@@ -1,0 +1,16 @@
+.menu {
+  width: 250px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  .menu-li {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .menu-li-active {
+    background-color: rgb(230,247,255);
+  }
+}

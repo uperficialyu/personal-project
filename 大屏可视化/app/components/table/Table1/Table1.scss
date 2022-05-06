@@ -1,0 +1,16 @@
+@import 'default';
+
+.table1 {
+  font-size: 20px;
+  .swiper-slide {
+    height: 15px
+  }
+  /* 随意指定一个height值即可 */    
+  .table1-list {
+    display: flex;
+    margin-bottom: 10px;
+    height: 35px;
+    background: rgba(7, 84, 97, 0.55);
+    text-align: center;
+  }
+}

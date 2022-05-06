@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<head>
+	<title>有机茶</title>
+	<meta charset="utf-8" />
+	<script type="text/javascript" src="https://gis.kf315.net/api/mapbox.js"></script>
+	<script src="./data/data.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		#back {
+			position: relative;
+			width: auto;
+			height: auto;
+		}
+
+		#mapcontent {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.mapboxgl-popup-content {
+			width: auto !important;
+			/* height: 155px !important; */
+			background: rgba(14, 109, 233, 0.43) !important;
+			border: 1px solid rgb(14, 109, 233) !important;
+			box-shadow: 0px 0px 30px 0px rgba(12, 80, 192, 0.5) !important;
+			line-height: 20px;
+			font-size: 16px;
+			color: #FFF !important;
+
+			padding: 0 !important;
+			background: none !important;
+			border: none !important;
+		}
+
+		.divBg {
+			background: url('./organicTea.png') no-repeat !important;
+			background-size: 100% 100%;
+			width: 355px;
+			height: 52px;
+			display: flex;
+			align-items: center;
+			align-items: center;
+			padding-left: 40px;
+		}
+		.divBg1 {
+			background: url('./organicTea1.png') no-repeat !important;
+			background-size: 100% 100%;
+			width: 330px;
+			height: 572px;
+			line-height: 30px;
+			padding-left: 20px;
+			padding-top: 20px;
+			/* display: flex;
+			align-items: center;
+			align-items: center;
+			padding-left: 40px; */
+		}
+	</style>
+	<script type="text/javascript">
+		var map;
+		var timer;
+		var t = -1;
+		var extent = [[119.1646163965358483, 28.2427695895380566], [119.7120026723755473, 28.6091743606034470]];
+
+		//地图加载
+		function onloadhandler() {
+			map = new EMap("mapcontent", {
+				center: [119.1646163965358483, 28.2427695895380566],
+				zoom: 9.8,
+				loading: {
+					color: "white"
+				},
+				style: "NormalMaps",
+				config: "none"
+			});
+			map.addEventListener(EMap.Events.onMapLoaded, function (e) {
+				map.loadImage("organicTea", "http://resource-gis.kf315.net/image/icon/songyang/有机茶.png", () => { });
+				map.setLayerVisibleById("tiandistatellite84", true);
+				map.setLayerVisibleById("tiandistatellitelabel84", true);
+				map.fitBounds(extent, 40, 0, false);
+				map.disableDoubleClickZoom();
+				addLayer();
+				syOrganicTea.features.forEach(function (ft) {
+					map.createInfoSymbol("popup",
+					 	`<div class="divBg">${ft.properties.companyName}</div>`, 
+					ft.geometry.coordinates, [20, -45], "left", false);
+				});
+			});
+			//鼠标点击事件
+			map.addEventListener(EMap.Events.onFeatureClick, function (e) {
+				map.destroyInfoSymbol();
+				syOrganicTeamassIf.features.forEach(function (ft) {
+					if (ft.properties.companyName === e.properties.companyName) {
+						let extent = turf.bbox(ft);
+						map.fitBounds(extent, 100);
+						map.setLayerVisibleById("sy", false);
+						map.setLayerVisibleById("syOutline", false);
+						map.setLayerVisibleById("syTownCenter", false);
+						map.setLayerVisibleById("syOrganicTea", false);
+						map.setLayerVisibleById("syOrganicTeaMassIf-fill", true);
+						map.setLayerVisibleById("syOrganicTeaMassIf-line", true);
+						map.setFilter("syOrganicTeaMassIf-fill", ["in", "companyName", e.properties.companyName]);
+						map.setFilter("syOrganicTeaMassIf-line", ["in", "companyName", e.properties.companyName]);
+					}
+				});
+			});
+
+			//鼠标移入事件
+			map.addEventListener(EMap.Events.onFeatureMouseover, function (e) {
+				map.destroyInfoSymbol();
+				map.createInfoSymbol("popup", "<div class='divBg1'>"
+					+"认证号: OTRDC-1368"+"<br>"
+					+"证书编号: 096OP2100048"+"<br>"
+					+"乡镇(街道): 叶村乡"+"<br>"
+					+"企业名称: 松阳县禾田家庭农场"+"<br>"
+					+"联系人: 王春兰"+"<br>"
+					+"联系电话: 13905787511"+"<br>"
+					+"认证面积(亩): 60"+"<br>"
+					
+					+"</div>",
+				turf.center(e.features[0]).geometry.coordinates, 
+				[0, -100], 
+				"", 
+				true);
+			});
+
+			//鼠标移出事件
+			map.addEventListener(EMap.Events.onFeatureMouseout, function (e) {
+				map.destroyInfoSymbol();
+			});
+
+			//地图点击事件
+			map.addEventListener("onMapClick", function (e) {
+				console.log(e.lngLat);
+			})
+
+		}
+
+
+		//返回
+		function back() {
+			map.fitBounds(extent, 100);
+			map.setLayerVisibleById("sy", true);
+			map.setLayerVisibleById("syOutline", true);
+			map.setLayerVisibleById("syTownCenter", true);
+			map.setLayerVisibleById("syOrganicTea", true);
+			map.setLayerVisibleById("syOrganicTeaMassIf-fill", false);
+			map.setLayerVisibleById("syOrganicTeaMassIf-line", false);
+			map.setFilter("syOrganicTeaMassIf-fill", null);
+			map.setFilter("syOrganicTeaMassIf-line", null);
+
+			syOrganicTea.features.forEach(function (ft) {
+				map.createInfoSymbol("popup", `<div class="divBg"'>${ft.properties.companyName}</div>`, ft.geometry.coordinates, [20, -45], "left", false);
+			});
+		}
+		//添加图层
+		function addLayer() {
+
+			//乡边界
+			map.addLayer({
+				"id": "sy",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": sy
+				},
+				"paint": {
+					"line-color": "#00ffff",
+					"line-width": 1,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//未平移外圈
+			map.addLayer({
+				"id": "syOutline",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": syOutline
+				},
+				"paint": {
+					"line-color": "#00ffff",
+					"line-width": 4,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//乡镇中心
+			map.addLayer({
+				"id": "syTownCenter",
+				"type": "symbol",
+				"source": {
+					"type": "geojson",
+					"data": syTownCenter
+				},
+				"paint": {
+					"text-color": "#fff"
+				},
+				"layout": {
+					"text-field": "{乡}",
+					"text-allow-overlap": true,
+					"text-font": ["MicrosoftYaHei"],
+					"text-size": 14,
+					"text-anchor": "bottom",
+					"text-optional": true
+				}
+			});
+
+			//茶加工随机点位
+			map.addLayer({
+				"id": "syOrganicTea",
+				"type": "symbol",
+				"source": {
+					"type": "geojson",
+					"data": syOrganicTea
+				},
+				"layout": {
+					"icon-image": "organicTea",
+					"icon-anchor": "bottom",
+					"icon-size": 1,
+					"icon-offset": [0, -15],
+				},
+				"paint": {
+					"text-color": "yellow"
+				},
+				"click": true,
+			});
+
+			//有机茶地块
+			map.addLayer({
+				"id": "syOrganicTeaMassIf-fill",
+				"type": "fill",
+				"source": {
+					"type": "geojson",
+					"data": syOrganicTeamassIf
+				},
+				"layout": {
+					"visibility": "none",
+				},
+				"paint": {
+					"fill-color": "#00ffff",
+					"fill-opacity": 0.25
+				},
+				"mouseenter": true,
+				"mouseleave": true
+			});
+
+			//有机茶地块
+			map.addLayer({
+				"id": "syOrganicTeaMassIf-line",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": syOrganicTeamassIf
+				},
+				"layout": {
+					"visibility": "none",
+					"line-join": "round",
+					"line-cap": "round",
+				},
+				"paint": {
+					"line-color": "#00ffff",
+					"line-width": 3,
+					"line-opacity": 1
+				}
+			});
+		}
+
+
+	</script>
+</head>
+
+<body onload="onloadhandler()">
+	<div id="mapcontent"></div>
+	<button id="back" onclick="back()">返回</button>
+</body>
+
+</html>

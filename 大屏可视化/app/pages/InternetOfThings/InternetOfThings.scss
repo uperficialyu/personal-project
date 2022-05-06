@@ -1,0 +1,279 @@
+.internetOfThings {
+  @mixin public-select {
+    border: none;
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: inline-block;
+    background: none;
+    option {
+      background-color: #0B2052;
+    }
+    option:hover {
+      color: #FFD200;
+    }
+  }
+  .internetOfThings-left {
+    position: absolute;
+    left: 27px;
+    z-index: 1;
+
+    .item1 {
+      display: flex;
+      margin-top: 48px;
+      .item1-item {
+        background: url('../../style/images/internetOfThings/bg.png');
+        width: 254px;
+        height: 111px;
+        display: flex;
+        margin-right: 15px;
+        .item1-item-left {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .item1-item-left-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+          }
+          .item1-item-left-bottom {
+            color: #FFCC00;
+            font-size: 30px;
+          }
+        }
+        .item1-item-right {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .item1-item-right-top {
+            display: flex;
+            align-items: center;
+            padding-left: 13px;
+            .item1-item-right-top-text1 {
+              color: white;
+              font-size: 16px;
+            }
+            .item1-item-right-top-text2 {
+              padding-left: 30px;
+              color: #6CF200;
+              font-size: 24px;
+            }
+          }
+          .item1-item-right-bottom {
+            padding-left: 13px;
+            display: flex;
+            align-items: center;
+            .item1-item-right-bottom-text1 {
+              color: white;
+              font-size: 16px;
+            }
+            .item1-item-right-bottom-text2 {
+              padding-left: 30px;
+              color: #71F0FF;
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+
+    .internetOfThings-left-item2 {
+      .item2 {
+        margin-top: 40px;
+        background: url('../../style/images/internetOfThings/item2.png') no-repeat;
+        width: 538px;
+        height: 378px;
+        .item2-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .item2-title {
+            font-size: 24px;
+            color: white;
+            padding-top: 27px;
+            padding-left: 41px;
+          }
+          .item2-select {
+            .item2-select-select {
+              @include public-select;
+              width: 200px;
+              margin-top: 15px;
+              margin-right: 25px;
+              background: linear-gradient(0deg, #203E82, #070745);
+              border: 1px solid #07EFDD;
+              color: #38ACF3;
+            }
+          }
+        }
+        .item2-video {
+          width: 408.5px;
+          height: 259.5px;
+          margin-left: 66px;
+          margin-top: 20px;
+          video {
+            width: 100%;
+            height: 100%;
+          }
+          iframe {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .internetOfThings-left-item3 {
+      .item3 {
+        margin-top: 40px;
+        background: url('../../style/images/internetOfThings/item3.png') no-repeat;
+        width: 242px;
+        height: 273.8px;
+        color: white;
+        .item3-title {
+          font-size: 20px;
+          padding-top: 40px;
+          text-align: center;
+          font-weight: bold;
+        }
+        .item3-content {
+          font-size: 16px;
+          padding-top: 16px;
+          padding-left: 75px;
+          padding-right: 45px;
+          color: #C9D4E1;
+        }
+      }
+    }
+  }
+
+
+  .internetOfThings-right {
+    position: absolute;
+    right: 27px;
+    z-index: 1;
+    .internetOfThings-right-item4 {
+  
+      .item4 {
+        margin-top: 55px;
+        width: 498px;
+        height: 699px;
+        background: url('../../style/images/internetOfThings/item4.png') no-repeat;
+        .item4-select {
+          width: 461.1px;
+          height: 65.3px;
+          background: url('../../style/images/internetOfThings/select.png') no-repeat;
+          margin-left: 23px;
+          .item4-select-select {
+            @include public-select;
+            width: 409px;
+            margin-top: 15px;
+            margin-left: 25px;
+          }
+        }
+        .item4-content {
+          display: flex;
+          flex-wrap: wrap;
+          .item4-content-item {
+            margin-top: 27px;
+            width: 138.5px;
+            height: 108.4px;
+            margin-left: 24px;
+            background: url('../../style/images/internetOfThings/rightitem.png') no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .item4-content-item-name {
+              font-size: 14.36px;
+              color: #27A1FF;
+            }
+            .item4-content-item-value {
+              font-size: 27.55px;
+              color: white;
+            }
+            .item4-content-item-unit {
+              font-size: 18.36px;
+              color: #27A1FF;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .internetOfThings-center {
+    position: absolute;
+    left: 550px;
+    z-index: 1;
+    .internetOfThings-center-bottom {
+      position: absolute;
+      top: 788px;
+      left: 150px;
+      .center {
+        width: 533.2px;
+        height: 133.4px;
+        background: url('../../style/images/internetOfThings/center-bottom.png') no-repeat;
+        position: relative;
+        .center-item1-title {
+          color: #0971FE;
+          text-align: center;
+          padding-top: 15px;
+          font-size: 20px;
+        }
+        .center-item1-active {
+          background: url('../../style/images/internetOfThings/center-active.png') no-repeat !important;
+        }
+        .center-item1-title-active {
+          color: #FFCC00;
+        }
+        .center-left {
+          position: absolute;
+          top: -24px;
+          left: 128px;
+          .center-left-item1 {
+            width: 90px;
+            height: 84px;
+            background: url('../../style/images/internetOfThings/center-no-active.png') no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .center-right {
+          position: absolute;
+          top: -24px;
+          right: 127px;
+          .center-right-item1 {
+            width: 90px;
+            height: 84px;
+            background: url('../../style/images/internetOfThings/center-no-active.png') no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+
+  .internetOfThings-map {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    .internetOfThings-iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+  }
+}

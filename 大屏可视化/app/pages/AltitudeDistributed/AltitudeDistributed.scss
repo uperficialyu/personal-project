@@ -1,0 +1,148 @@
+.altitude-distributed {
+  @mixin public-select {
+    background: #0560B7;
+    background: linear-gradient(0deg, #203E82, #070745);
+    border: none;
+    border: 1px solid #07EFDD;
+    color: #38ACF3;
+    font-size: 18px;
+    line-height: 40px;
+    height: 40px;
+    border-radius: 5px;
+    option {
+      background-color: #0B2052;
+    }
+    option:hover {
+      color: #FFD200;
+    }
+  }
+
+  .altitude-map {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    z-index: 0;
+    .altitude-iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+  }
+  .plant-distributed-left {
+    position: relative;
+    .plant-distributed-left-searchAndTown {
+      position: absolute;
+      left: 20px;
+    }
+
+    .altitude-distributed-left-item1 {
+      background: url('../../style/images/altitudeDistributed/altitudeDistributed2.png') no-repeat;
+      width: 208px;
+      height: 258px;
+      position: absolute;
+      top: 175px;
+      left: 20px;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      padding-left: 40px;
+      padding-top: 28px;
+      padding-bottom: 26px;
+      .altitude-distributed-left-item1-div1 {
+        font-size: 20px;
+      }
+      .altitude-distributed-left-item1-div2 {
+        font-size: 14px;
+      }
+      .altitude-distributed-left-item1-div3 {
+        display: flex;
+        align-items: center;
+        .altitude-distributed-left-item1-div3-left {
+          width: 14px;
+          height: 14px;
+          background: #FF5500;
+        }
+        .altitude-distributed-left-item1-div3-right {
+          font-size: 16px;
+          padding-left: 14px;
+        }
+      }
+    }
+
+    .altitude-distributed-left-map {
+      background: url('../../style/images/altitudeDistributed/altitudeDistributed1.png');
+      width: 206px;
+      height: 208px;
+      position: absolute;
+      top: 455px;
+      left: 21px;
+      flex-direction: column;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 20px 0;
+      padding-left: 24px;
+      span {
+        color: white;
+      }
+    }
+
+    .plant-distributed-left-pic2 {
+      position: absolute;
+      top: 841px;
+      color: white;
+      display: flex;
+      left: 141px;
+      width: 100%;
+      .plant-distributed-left-pic4-item {
+        background: url('../../style/images/component/pic3.png') no-repeat;
+        width: 101.9px;
+        height: 58px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 12px;
+        background-size: 100% 100%;
+      }
+      .plant-distributed-left-pic4-item-active {
+        background: url('../../style/images/component/pic4.png') no-repeat;
+        background-size: 100% 100%;
+        color: #FFD200;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .plant-distributed-right {
+    position: absolute;
+    right: 24px;
+
+    .plant-distributed-item2 {
+      padding-top: 20px;
+      .item2 {
+        background: url('../../style/images/plantSort/plantSort1.png') no-repeat;
+        width: 500px;
+        height: 344px;
+        background-size: 100% 100%;
+        .item2-middle {
+          height: 300px;
+          width: 100%;
+        }
+      }
+    }
+
+    .plant-distributed-item3 {
+      margin-top: 27px;
+      .item3 {
+        background: url('../../style/images/plantDistributed/3.png') no-repeat;
+        width: 500px;
+        height: 429.8px;
+        background-size: 100% 100%;
+        .item3-middle {
+          height: 370px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

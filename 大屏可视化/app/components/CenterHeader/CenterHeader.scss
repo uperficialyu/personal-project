@@ -1,0 +1,17 @@
+.center-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .center-header-item {
+    display: flex;
+    color: white;
+    align-items: center;
+    font-weight: bold;
+    .center-header-item-title1 {
+      font-size: 16px;
+    }
+    .center-header-item-title2 {
+      font-size: 34px;
+    }
+  }
+}

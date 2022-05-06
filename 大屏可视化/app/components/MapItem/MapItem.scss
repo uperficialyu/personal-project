@@ -1,0 +1,13 @@
+.map-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .map-item-left {
+    background: url('../../style/images/component/map-item.png');
+    width: 440px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}

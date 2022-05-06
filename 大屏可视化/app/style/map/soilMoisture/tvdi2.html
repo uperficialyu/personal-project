@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="http://gis.zigui.kf315.net/api/mapbox.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./zigui.js"></script>
+    <title>TVDI展示</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #switchmap {
+            position: relative;
+            width: auto;
+            height: auto;
+        }
+
+        #dem {
+            position: relative;
+            width: auto;
+            height: auto;
+        }
+
+        #statellite {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+
+        #vector {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+
+        #terrain {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+
+        #month {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+
+        #playTvdi {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="switchmap">
+        <!-- <button id="statellite" onclick="statelliteLayer()">卫星图</button>
+        <button id="vector" onclick="vectorLayer()">行政区划图</button>
+        <button id="terrain" onclick="terrainLayer()">地形图</button> -->
+
+        <!-- <label style="top: 0"><input id="dom" type="checkbox" unchecked />正射影像</label>
+        <label style="top: 30px"><input id="village" type="checkbox" unchecked />行政村</label>
+        <label style="top: 30px"><input id="tvdi" type="checkbox" checked />土壤墒情</label> -->
+    </div>
+    <!-- <div id="tvdi">
+        <select id="month">
+            <option value="01">1</option>
+            <option value="02">2</option>
+            <option value="03">3</option>
+            <option value="04">4</option>
+            <option value="05">5</option>
+            <option value="06">6</option>
+            <option value="07">7</option>
+            <option value="08">8</option>
+        </select>
+        <button id="playTvdi" onclick="play()">播放</button>
+    </div> -->
+    <script type="text/javascript">
+        var map;
+        var extent;
+        var img_name;
+        var tvdi_url;
+        var timer;
+        var t = -1;
+        var click = true;
+        var month = ["01", "02", "03", "04", "05", "06", "07", "08"];
+        map = new EMap('container', {
+            zoom: 7,
+            style: 'Zigui',
+            config: 'none',
+            center: [110.686, 30.921],
+            maxZoom: 16
+        });
+        map.addEventListener(EMap.Events.onMapLoaded, function (e) {
+            extent = map.getBounds(zigui.features[0].geometry);
+            map.fitBounds(extent, 50, 0, false);
+            //默认卫星图层打开
+            map.setLayerVisibleById('tiandistatellite84', true);
+            map.setLayerVisibleById('tiandistatellitelabel84', true);
+            addTvdiLayer();
+        });
+        //打开卫星底图
+        function statelliteLayer() {
+            map.setLayerVisibleById('tiandivector84', false);
+            map.setLayerVisibleById('tiandivectorlabel84', false);
+            map.setLayerVisibleById('tianditerrain', false);
+            map.setLayerVisibleById('tianditerrainlabel', false);
+            map.setLayerVisibleById('tiandistatellite84', true);
+            map.setLayerVisibleById('tiandistatellitelabel84', true);
+        }
+        //行政区划图
+        function vectorLayer() {
+            map.setLayerVisibleById('tiandivector84', true);
+            map.setLayerVisibleById('tiandivectorlabel84', true);
+            map.setLayerVisibleById('tianditerrain', false);
+            map.setLayerVisibleById('tianditerrainlabel', false);
+            map.setLayerVisibleById('tiandistatellite84', false);
+            map.setLayerVisibleById('tiandistatellitelabel84', false);
+        }
+        //地形图
+        function terrainLayer() {
+            map.setLayerVisibleById('tiandivector84', false);
+            map.setLayerVisibleById('tiandivectorlabel84', false);
+            map.setLayerVisibleById('tianditerrain', true);
+            map.setLayerVisibleById('tianditerrainlabel', true);
+            map.setLayerVisibleById('tiandistatellite84', false);
+            map.setLayerVisibleById('tiandistatellitelabel84', false);
+        }
+
+        // 正射影像
+        function domClick(isShow) {
+			map.setLayerVisibleById('dom', isShow);
+		}
+
+        // 行政村
+        function villageClick(isShow) {
+			map.setLayerVisibleById('village', isShow);
+			map.setLayerVisibleById('village_font', isShow);
+		}
+
+        // 土壤墒情
+        // function villageClick(isShow) {
+		// 	map.setLayerVisibleById('village', isShow);
+		// 	map.setLayerVisibleById('village_font', isShow);
+		// }
+
+        $('#dom').change(function () {
+            if ($(this).prop("checked")) {
+                map.setLayerVisibleById('dom', true);
+            } else {
+                map.setLayerVisibleById('dom', false);
+            }
+        });
+        $('#village').change(function () {
+            if ($("#village").prop("checked")) {
+                map.setLayerVisibleById('village', true);
+                map.setLayerVisibleById('village_font', true);
+            } else {
+                map.setLayerVisibleById('village', false);
+                map.setLayerVisibleById('village_font', false);
+            }
+        });
+        $('#tvdi').change(function () {
+            for (var i = 0; i < month.length; i++) {
+                map.setPaintProperty("zigui_tvdi_2021" + month[i], "raster-opacity", 0);
+            }
+            if ($("#tvdi").prop("checked")) {
+                map.setPaintProperty("zigui_tvdi_2021" + $("#month").val(), "raster-opacity", 1);
+            }
+        });
+
+        //tvdi展示----------------------------------------------------------------------------------------------------
+        $("#month").change(function () {
+            var tvdiLayerId = 'zigui_tvdi_2021' + $("#month").val();
+            map.fitBounds(extent, 50, 0, false);
+            clearInterval(timer);
+            $("#playTvdi").html("播放");
+            click = true;
+            t = -1;
+            map.setPaintProperty(tvdiLayerId, "raster-opacity", 1);
+            for (var i = 0; i < month.length; i++) {
+                if (month[i] !== $("#month").val()) {
+                    map.setPaintProperty("zigui_tvdi_2021" + month[i], "raster-opacity", 0);
+                }
+            }
+        });
+        //加载图层
+        function addTvdiLayer() {
+            for (var i = 0; i < month.length; i++) {
+                var img_id = "zigui_tvdi_2021" + month[i];
+                tvdi_url = "http://geoserver-gis.zigui.kf315.net/geoserver/gwc/service/wmts?layer=cite%3A" + img_id + "&style=&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}"
+                map.addLayer({
+                    id: img_id,
+                    type: "raster",
+                    source: {
+                        type: "raster",
+                        tiles: [tvdi_url],
+                        tileSize: 256
+                    },
+                    layout: {
+                        visibility: "visible"
+                    }
+                });
+            };
+            for (var i = 0; i < month.length; i++) {
+                if (i === month.length - 1) {
+                    map.setPaintProperty("zigui_tvdi_2021" + month[i], "raster-opacity", 1);
+                    $("#month").val(month[i]);
+                } else {
+                    map.setPaintProperty("zigui_tvdi_2021" + month[i], "raster-opacity", 0);
+                }
+            };
+        };
+        function play() {
+            if (click) {
+                timer = setInterval(function () {
+                    if (t === month.length - 1) t = 0;
+                    else t++;
+                    var tvdiLayerId = "zigui_tvdi_2021" + month[t];
+                    $("#month").val(month[t]);
+                    map.setPaintProperty(tvdiLayerId, "raster-opacity", 1);
+                    for (var i = 0; i < month.length; i++) {
+                        if (i !== t) {
+                            map.setPaintProperty("zigui_tvdi_2021" + month[i], "raster-opacity", 0);
+                        };
+                    }
+                }, 3000);
+                click = !click;
+                $("#playTvdi").html("暂停");
+            } else {
+                clearInterval(timer);
+                $("#playTvdi").html("播放");
+                click = !click;
+            }
+        };
+//---------------------------------------------------------------------------------------------------------------------
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<head>
+	<title>茶种植</title>
+	<meta charset="utf-8" />
+	<script type="text/javascript" src="https://gis.kf315.net/api/mapbox.js"></script>
+	<script src="./data/data.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		#mapcontent {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.mapboxgl-popup-content {
+			width: auto !important;
+			/* height: 155px !important; */
+			background: rgba(14, 109, 233, 0.43) !important;
+			border: 1px solid rgb(14, 109, 233) !important;
+			box-shadow: 0px 0px 30px 0px rgba(12, 80, 192, 0.5) !important;
+			line-height: 20px;
+			font-size: 16px;
+			color: #FFF !important;
+		}
+	</style>
+	<script type="text/javascript">
+		var map;
+		var timer;
+		var t = -1;
+		var extent = [[119.1646163965358483, 28.2427695895380566], [119.7120026723755473, 28.6091743606034470]];
+		var syOutlineCopy1 = JSON.parse(JSON.stringify(syOutline));
+		var syOutlineCopy2 = JSON.parse(JSON.stringify(syOutline));
+
+		//地图加载
+		function onloadhandler() {
+			map = new EMap("mapcontent", {
+				center: [119.1646163965358483, 28.2427695895380566],
+				zoom: 9.8,
+				loading: {
+					color: "white"
+				},
+				style: "NormalMaps",
+				config: "none"
+			});
+			map.addEventListener(EMap.Events.onMapLoaded, function (e) {
+				map.loadImage("teaPlanting", "http://resource-gis.kf315.net/image/icon/songyang/茶种植.png", () => { });
+				map.setLayerVisibleById("sample", true);
+				map.fitBounds(extent, 40, 0, false);
+				map.disableDoubleClickZoom();
+				addLayer();
+				play(syTownCenter);
+			});
+			//鼠标移入事件
+			map.addEventListener(EMap.Events.onFeatureMouseover, function (e) {
+				map.setCursor("pointer");
+				clearInterval(timer);
+				map.destroyInfoSymbol();
+				map.createInfoSymbol("popup", "<div style='width:auto;height:auto'>" 
+					+ e.features[0].properties["乡"] + "<br>"
+					+ "茶园面积(亩):16539<br>"
+					+"</div>", e.features[0].geometry.coordinates, [21, -40], "left", false);
+			});
+			//鼠标移出事件
+			map.addEventListener(EMap.Events.onFeatureMouseout, function (e) {
+				map.setCursor("");
+				map.destroyInfoSymbol("popup");
+				play(syTownCenter);
+			});
+		}
+
+		//平移数据
+		function pan(data, num) {
+			data.features[0].geometry.coordinates[0].forEach(function (coords) {
+				coords[0] = coords[0] - num;
+				coords[1] = coords[1] + num;
+			});
+			return data;
+		}
+
+		//轮播数据
+		function play(data) {
+			timer = setInterval(function () {
+				if (t === data.features.length - 1) t = 0;
+				else t++;
+				map.destroyInfoSymbol();
+				map.createInfoSymbol("popup", "<div style='width:auto;height:auto'>" 
+					+ data.features[t].properties["乡"] + "<br>"
+					+ "茶园面积(亩):16539<br>"
+					+"</div>", data.features[t].geometry.coordinates, [21, -40], "left", false);
+			}, 1500);
+		}
+
+		//添加图层
+		function addLayer() {
+
+			//平移图层一
+			let syOutlinePan1 = pan(syOutlineCopy1, -0.0016);
+			map.addLayer({
+				"id": "syOutline-pan1",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": syOutlinePan1
+				},
+				"paint": {
+					"line-color": "#2d71fe",
+					"line-width": 4,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//平移图层二
+			let syOutlinePan2 = pan(syOutlineCopy2, -0.0032);
+			map.addLayer({
+				"id": "syOutline-pan2",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": syOutlinePan2
+				},
+				"paint": {
+					"line-color": "#1c409e",
+					"line-width": 4,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//乡边界
+			map.addLayer({
+				"id": "sy",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": sy
+				},
+				"paint": {
+					"line-color": "#00ffff",
+					"line-width": 1,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//未平移外圈
+			map.addLayer({
+				"id": "syOutline",
+				"type": "line",
+				"source": {
+					"type": "geojson",
+					"data": syOutline
+				},
+				"paint": {
+					"line-color": "#00ffff",
+					"line-width": 4,
+					"line-opacity": 1
+				},
+				"layout": {
+					"line-join": "round",
+					"line-cap": "round"
+				}
+			});
+
+			//乡镇中心
+			map.addLayer({
+				"id": "syTownCenter",
+				"type": "symbol",
+				"source": {
+					"type": "geojson",
+					"data": syTownCenter
+				},
+				"paint": {
+					"text-color": "#fff"
+				},
+				"layout": {
+					"text-field": "{乡}",
+					"text-allow-overlap": true,
+					"text-font": ["MicrosoftYaHei"],
+					"text-size": 14,
+					"text-anchor": "bottom",
+					"text-optional": true,
+					"icon-allow-overlap": true,
+					"icon-image": "teaPlanting",
+					"icon-anchor": "bottom",
+					"icon-size": 1,
+					"icon-offset": [0, -15],
+				},
+				"mouseenter": true,
+				"mouseleave": true
+			});
+		}
+
+
+	</script>
+</head>
+
+<body onload="onloadhandler()">
+	<div id="mapcontent"></div>
+</body>
+
+</html>

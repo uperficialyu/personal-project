@@ -1,0 +1,39 @@
+.input {
+  .input-center {
+    position: absolute;
+    z-index: 1;
+    top: 144px;
+    left: 20px;
+    background: url(../../style/images/input/center.png) no-repeat;
+    width: 524px;
+    height: 163px;
+    background-size: 100% 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .input-center-title {
+      // text-align: center;
+      font-size: 22px;
+      // padding-top: 22px;
+    }
+    .input-center-number {
+      font-size: 54px;
+    }
+  }
+
+  .input-map {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    .input-iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+  }
+
+}

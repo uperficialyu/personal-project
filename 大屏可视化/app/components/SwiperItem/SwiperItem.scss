@@ -1,0 +1,52 @@
+.swiper {
+  height: 100%;
+  .swiper-item {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    .swiper-item-left {
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      .swiper-item-left-icon {
+        width: 22px;
+        height: 22px;
+        background: url('.././../style/images/home/home12.png') no-repeat;
+        background-size: 100% 100%;
+      }
+      .swiper-item-left-icon-active {
+        width: 22px;
+        height: 22px;
+        background: url('.././../style/images/home/home13.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .swiper-item-right {
+      width: 80%;
+      .swiper-item-right-title {
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #FFFFFF;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-right: 10px;
+      }
+      .swiper-item-right-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .swiper-item-right-content-value {
+          font-size: 16px;
+          font-family: Source Han Sans CN;
+          font-weight: 400;
+          color: #5F8EB9;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

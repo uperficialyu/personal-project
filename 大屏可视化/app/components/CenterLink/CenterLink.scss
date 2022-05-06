@@ -1,0 +1,13 @@
+.center-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+  .center-link-item {
+    color: #12BBFF;
+    text-align: center;
+  }
+  .center-link-item:hover {
+    cursor: pointer;  
+  }
+}

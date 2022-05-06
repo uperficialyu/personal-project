@@ -1,0 +1,78 @@
+.modal-detail3 {
+  background: url('../../style/images/component/modal.png');
+  width: 917px;
+  height: 828px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  .modal-detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding-top: 70px;
+    text-align: center;
+  }
+
+  .modal-detail-close {
+    color: white;
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .modal-detail-content {
+    overflow: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 600px;
+    .modal-detail-content-h2 {
+      padding: 0 60px;
+      color: #CDDCFF;
+      font-weight: bold;
+      font-size: 23px;
+    }
+    .modal-detail-content-p {
+      font-size: 18px;
+      color: #CDDCFF;
+      padding: 0 60px;
+      text-indent: 2em;
+    }
+    .modal-detail-content-p1 {
+      font-size: 18px;
+      color: #CDDCFF;
+      padding: 0 60px;
+      padding-top: 40px;
+    }
+    .modal-detail-content-png {
+      text-align: center;
+      padding-top: 37px;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 1px;
+    height: 16px;
+    background-color: #F5F5F5;
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+  }
+
+}

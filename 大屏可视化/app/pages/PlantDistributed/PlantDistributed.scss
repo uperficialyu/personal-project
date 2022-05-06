@@ -1,0 +1,249 @@
+.plant-distributed {
+  @mixin public-select {
+    background: #0560B7;
+    background: linear-gradient(0deg, #203E82, #070745);
+    border: none;
+    border: 1px solid #07EFDD;
+    color: #38ACF3;
+    font-size: 18px;
+    line-height: 40px;
+    height: 40px;
+    border-radius: 5px;
+    option {
+      background-color: #0B2052;
+    }
+    option:hover {
+      color: #FFD200;
+    }
+  }
+
+  .aspect-map {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    z-index: 0;
+    .aspect-iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+  }
+  .plant-distributed-left {
+    position: relative;
+
+    .plant-distributed-left-search {
+      position: absolute;
+      left: 20px;
+      background: url('../../style/images/component/search.png');
+      width: 493px;
+      height: 90px;
+      .plant-distributed-left-search-input {
+        margin-top: 22px;
+        margin-left: 108px;
+        line-height: 23px;
+        background: #000C39;
+        border: none;
+        color: white;
+        outline: none;
+        width: 220px;
+      }
+      .plant-distributed-left-search-input::-webkit-input-placeholder {
+        color: white;
+      }
+      .plant-distributed-left-search-button {
+        color: white;
+        padding-left: 90px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+
+    .plant-distributed-left-pic1 {
+      background: url('../../style/images/plantDistributed/1.png');
+      width: 205px;
+      height: 194px;
+      position: absolute;
+      top: 230px;
+      left: 20px;
+    }
+
+    .plant-distributed-left-map {
+      background: url('../../style/images/component/pic8.png');
+      width: 252px;
+      height: 133px;
+      position: absolute;
+      top: 200px;
+      left: 21px;
+      flex-direction: column;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 20px 0;
+      padding-left: 24px;
+      span {
+        color: white;
+      }
+    }
+
+    .plant-distributed-left-pic2 {
+      position: absolute;
+      top: 841px;
+      color: white;
+      display: flex;
+      left: 141px;
+      width: 100%;
+      .plant-distributed-left-pic4-item {
+        background: url('../../style/images/component/pic3.png') no-repeat;
+        width: 101.9px;
+        height: 58px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 12px;
+        background-size: 100% 100%;
+      }
+      .plant-distributed-left-pic4-item-active {
+        background: url('../../style/images/component/pic4.png') no-repeat;
+        background-size: 100% 100%;
+        color: #FFD200;
+        font-weight: bold;
+      }
+    }
+
+    .plant-distributed-left-pic3 {
+      position: absolute;
+      left: 22px;
+      top: 130px;
+      .item2-select1 {
+        @include public-select;
+        width: 140px;
+      }
+    }
+
+    .plant-distributed-left-pic5 {
+      position: absolute;
+      left: 182px;
+      top: 130px;
+      .item2-select1 {
+        @include public-select;
+        width: 140px;
+      }
+    }
+
+    .plant-distributed-left-pic4 {
+      display: flex;
+      position: absolute;
+      left: 540px;
+      top: 50px;
+      width: 600px;
+      color: white;
+      justify-content: space-evenly;
+      text-align: center;
+      .plant-distributed-left-pic4-title {
+        font-size: 20px;
+      }
+      .plant-distributed-left-pic4-png {
+        width: 120px;
+        height: 60px;
+        position: relative;
+        .plant-distributed-left-pic4-value {
+          position: absolute;
+          font-size: 42px;
+          top: -30px;
+          left: 10px;
+        }
+      }
+    }
+
+    .plant-distributed-left-pic6 {
+      background: url('../../style/images/component/pic2.png');
+      width: 170px;
+      height: 42px;
+      position: absolute;
+      top: 0px;
+      left: 1200px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      color: #CDDCFF;
+      cursor: pointer;
+    }
+  }
+
+  .plant-distributed-right {
+    position: absolute;
+    right: 24px;
+
+    .plant-distributed-item2 {
+      padding-top: 20px;
+      .item2 {
+        background: url('../../style/images/plantSort/plantSort1.png') no-repeat;
+        width: 500px;
+        height: 344px;
+        background-size: 100% 100%;
+        .item2-middle {
+          height: 300px;
+          width: 100%;
+        }
+      }
+    }
+
+    .plant-distributed-item3 {
+      margin-top: 27px;
+      .item3 {
+        background: url('../../style/images/plantDistributed/3.png') no-repeat;
+        width: 500px;
+        height: 429.8px;
+        background-size: 100% 100%;
+        .item3-bottom {
+          height: 380px;
+          margin-top: 20px;
+          .item3-swiper-item {
+            width: 478px;
+            height: 47px;
+            font-size: 16px;
+            margin-left: 10px;
+            .item3-swiper-item-child {
+              width: 478px;
+              height: 36px;
+              color: white;
+              border: 1px solid #15418A;
+              display: flex;
+              align-items: center;
+              .item3-swiper-item-child-div {
+                flex: 1;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis; 
+                -o-text-overflow: ellipsis;
+                white-space:nowrap;
+              }
+              .item3-swiper-item-child-div-color1 {
+                color: #FFD200;
+                flex: 0.3;
+              }
+              .item3-swiper-item-child-div-color2 {
+                color: #FFFFFF;
+                flex: 0.5;
+              }
+              .item3-swiper-item-child-div-color3 {
+                color: #70A4E9;
+              }
+              .item3-swiper-item-child-div-color4 {
+                color: #70A4E9;
+              }
+              .item3-swiper-item-child-length {
+                background: #22387F;
+                width: 232.8px;
+                height: 7.2px;
+                .item3-swiper-item-child-length1 {
+                  background: linear-gradient(90deg, #24C768 0%, #FFDE00 49%, #FF7800 100%);
+                  height: 7.2px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

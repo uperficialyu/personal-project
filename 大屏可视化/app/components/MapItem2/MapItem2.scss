@@ -1,0 +1,26 @@
+.map-item2 {
+  display: flex;
+  border: 2px solid #1E4DB3;
+  height: 70px;
+  width: 500px;
+  .map-item2-big {
+    width: 166px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .map-item2-small {
+      width: 146px;
+      height: 50px;
+      .map-item2-text {
+        color: white;
+        padding-top: 29px;
+        text-align: center;
+      }
+    }
+  }
+  .map-item2-big-active {
+    background: url('../../style/images/component/8.png');
+  }
+}

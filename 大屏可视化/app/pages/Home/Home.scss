@@ -1,0 +1,25 @@
+@import 'default';
+
+.home {
+  .home-menu {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin-top: 20px;
+  }
+  .home-content {
+    position: absolute;
+    left: 250px;
+    top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    .home-li {
+      width: 350px;
+      height: 350px;
+      border: 1px #ddd;
+      border-radius: 10px;
+      margin: 20px;
+      background-color: red;
+    }
+  }
+}
