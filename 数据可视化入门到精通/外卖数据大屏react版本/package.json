@@ -25,7 +25,8 @@
     "react-router-dom": "5.0.1",
     "react-swipeable-views": "0.13.3",
     "rmc-date-picker": "^6.0.10",
-    "rmc-picker": "^5.0.10"
+    "rmc-picker": "^5.0.10",
+    "swiper": "^6.6.2"
   },
   "devDependencies": {
     "@babel/cli": "7.2.3",
